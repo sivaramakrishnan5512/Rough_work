@@ -1,0 +1,1 @@
+https://github.com/texperience/django-bootstrap-ui
