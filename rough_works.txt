@@ -1,0 +1,3430 @@
+templates/registration/login.html
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <title>Login</title><!-- 
+        <link rel="icon" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="icon" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}"> -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'lib/login/css/main.css' %}">
+        <style type="text/css">
+            .bg-image {
+                width: 100%;
+                height: 100vh;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+            
+            .input-form {
+                border: 0;
+                outline: 0;
+                border-radius: 0;
+                background: transparent;
+                border-bottom: 1px solid white;
+            }
+            
+            .logo {
+                background-size: cover;
+                background-repeat: no-repeat;
+                height: 60px !important;
+                width: 60px !important;
+            }
+            
+            .btn-align {
+                position: absolute;
+                width: 125px !important;
+                margin: 0;
+                background-color: transparent;
+                left: 110px !important;
+            }
+
+            .form-group input::placeholder
+            {
+                color: #ccc;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 bg-secondary px-0">
+                <img class="img-responsive bg-image" src="{% static 'img/login/bg-01.png' %}" alt="" style="max-height: 99.9vh">
+            </div>
+
+
+            <div class="col-md-6 bg-primary px-0" style="height:100vh;background-color: #6c757d!important;">
+                <div class="d-flex h-100 flex-column align-items-center justify-content-center" style="width:90%;">
+                    <div class="logo align-items-start" style=" padding-left: 24px; margin-bottom: 24px; ">
+                        <img class="pl-4" src="https://logosbynick.com/wp-content/uploads/2020/04/logo-3.png" alt="logo-image" style="border: 2px solid #adc33b;border-radius: 3px;max-width: 76px; padding-left: 0px !important;">
+                    </div>
+                    <form class="txt-center w-100" id="login" method="post" style="  padding-left:130px; padding-right: 60px;">
+                        {% csrf_token %}
+                        <h4 class="Logo-text text-white text-uppercase mt-3 mb-3 font-weight-bold text-center">Portal Login</h4>
+                        
+                        <div class="form-group text-white">
+                            <label for="exampleFormControlInput1">User ID</label>
+                            <input type="email" class="form-control input-form"  type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="User ID">
+                        </div>
+                        <div class="form-group text-white">
+                            <label for="exampleFormControlInput1">Password</label>
+                            <input type="password" class="form-control input-form"  name="password" autocomplete="current-password" required="" id="id_password" placeholder="********" onkeypress="handle(event)">
+                        </div>
+
+                        <!-- <div class="form-check form-check-inline text-white">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">User</label>
+                        </div>
+                        <div class="form-check form-check-inline text-white ">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">admin</label>
+                        </div> -->                        
+                            <!-- <div class="col pt-5">
+                                <p class="text-white">Forgot username/ Password</p>
+                            </div> -->
+                        <div class="d-flex justify-content-between" style="padding: 0px 71px;margin-bottom: 20px;">
+                            <!-- <a href="#" class="text-white underline" >New User Onboarding</a> -->
+                            <!-- <a href="#" class="text-white underline" >Forgot username/ Password</a> -->
+                            <p class="text-white">*Please login using your valid username and Password</p>
+                        </div>
+
+                        {% for message in messages %}
+                        <div class="alert alert-danger" style=" color: #FAFAFA; background-color: red; ">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        <div class="form-group row mt-5 text-center">
+                            <div class="col">
+                                <a class="btn btn-outline-light rounded-pill text-uppercase" href="javascript:document.getElementById('login').submit();"  style="width: 110px;"><h6>Login</h6></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function handle(e){
+            if(e.keyCode === 13){
+                e.preventDefault();
+                document.getElementById('login').submit();               
+            }
+        }
+    </script>
+</body>
+</html>
+
+----------------------------------------------------------------------------------------------------
+templates/registration/signup.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<body>
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+{% endblock %}
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------
+setting.py
+
+"""
+Django settings for insc_landingpage project.
+
+Generated by 'django-admin startproject' using Django 3.0.1.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.0/topics/settings/
+
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/3.0/ref/settings/
+"""
+
+import os
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'rn3b24^7z7xh+w=%v6(gaa5@nsbo0nctf_kzhif-xw64*z$k)k'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# ALLOWED_HOSTS = []
+import socket    
+import efsversion
+efsversion.require({'cryptography': '2.9.1'})
+hostname = socket.gethostname()    
+IPAddr = socket.gethostbyname(hostname)
+ALLOWED_HOSTS = [IPAddr,hostname,'digip.***.com']
+
+AUTHENTICATION_BACKENDS = [
+   'insc_landingpage.authentication_backend.AuthenticationBackend',
+]
+
+from cryptography.fernet import Fernet
+# Application definition
+key = open(os.path.join(BASE_DIR, 'landingpage/templates/secret.key'), 'rb').read()
+f = Fernet(key)
+decrypted_message = f.decrypt(b'gAAAAABe_1mvKmgH7j8AYuadDsbfSfcmm0sM2N1_jV8md7GYcUFCSSzMwhVOsqL7nCr7HsRO9f3Fidrw9jayXhTkjg06h400IQ==')
+
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'landingpage',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'insc_landingpage.urls'
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'landingpage/templates/'),os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+DATABASE_ROUTERS = ['ranger.router.DbRouter']
+WSGI_APPLICATION = 'insc_landingpage.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'digip_landingpage',
+        'USER': 'insightcore',
+        'PASSWORD': decrypted_message.decode('UTF-8'),
+        'HOST': 'uswxaprhadp01.uslttrr.baml.com',
+        'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
+    }
+}
+
+
+# Database
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'insight_': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'insight',
+        'USER': 'insightcore',
+        'PASSWORD': decrypted_message.decode('UTF-8'),
+        'HOST': '171.204.248.11',
+        'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
+    }
+}
+# Password validation
+# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/home'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_URL = '/static/'
+
+
+---------------------------------------------------------------------------------------------
+urls.py
+
+from django.contrib import admin
+from django.conf.urls import url, include
+from django.contrib.auth.views import LoginView, LogoutView
+from onboarding import views
+from django.views.generic.base import RedirectView
+
+
+urlpatterns = [
+    url(r'^home/$', views.home_view, name='home'),
+    url(r'^admin/', admin.site.urls),
+    url(r'accounts/login/', views.login_, name='login'),
+    url(r'^logout/$', LogoutView.as_view(next_page='login'), name='logout'),
+	url(r'^$', RedirectView.as_view(url='home')),
+]
+
+----------------------------------------------------------------------------------------------
+
+views.py
+
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
+
+@login_required
+def home_view(request):
+	return render(request, 'home.html', {'user':request.user.username,'email':request.user.last_name+","+request.user.first_name})
+
+from django.contrib import messages
+
+def login_(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        domain = request.POST['domain']
+        user = authenticate(username=username, password=password, domain=domain)
+        # user = authenticate(username=username, password=password)
+        # print(username,"----p----",password,user)
+        if user is not None:
+            if user.is_active:
+                login(request,user)
+                return HttpResponseRedirect('/home/')
+        else:
+            messages.error(request,'NBK-Id/Password/Domain Incorrect')
+            return redirect('login')
+    return render(request, 'registration/login.html')
+
+
+----------------------------------------------------------------------------------------------
+
+models.py 
+
+from django.db import models   
+import datetime
+import time    
+# control apnel > Realtime hd audio manager >
+class student(models.Model):
+	
+    student_roll_number = models.AutoField(primary_key=True)
+    student_name = models.CharField(max_length=30)
+    branch = models.CharField(max_length=30)
+    mode_of_admission = models.IntegerField()
+    mobile_number = models.CharField(max_length=30)
+    email = models.CharField(max_length=30)
+    current_address = models.CharField(max_length=30)
+    permenant_address = models.CharField(max_length=30)
+    father_name = models.CharField(max_length=30)
+    father_mobile_number = models.CharField(max_length=30)
+    created_dt = models.DateTimeField(default=datetime.datetime.now())
+
+    class Meta:
+        app_label = 'ssn'
+        db_table = 'student'
+
+# total_no_of_users
+# estimated_concurrent_users
+# unplanned_outage_type_id
+# system_availabilty_type_id
+# expected_release_date_pre_prod
+# expected_release_date_prod
+# expected_onboarding_date
+# created_dt
+# last_modified_dt
+# class project_detail(models.Model):
+    
+#     project_detail_id = models.AutoField(primary_key=True)
+#     tenant_detail_id = models.IntegerField()
+#     project_name = models.CharField(max_length=30)
+#     project_short_name = models.CharField(max_length=30)
+#     project_goal = models.CharField(max_length=30)
+#     problem_statement = models.CharField(max_length=30)
+#     business_case_summary = models.CharField(max_length=30)
+#     project_in_scope = models.CharField(max_length=30)
+#     project_out_of_scope = models.CharField(max_length=30)
+#     project_manager_name = models.CharField(max_length=30)
+#     project_manager_email = models.CharField(max_length=30)
+#     program_manager_name = models.CharField(max_length=30)
+#     program_manager_email = models.CharField(max_length=30)
+#     created_dt = models.DateTimeField(default=datetime.datetime.now())
+
+#     class Meta:
+#         app_label = 'test'
+#         db_table = 'project_detail'
+
+----------------------------------------------------------------------------------------------
+
+accesslist.html
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <title>Staff - Home</title>
+        <link rel="icon" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="icon" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">              
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">   
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+        <style type="text/css">
+            body{
+                background-color: #eee;
+            }
+            html {
+              font-size: 1rem;
+            }
+
+            @include media-breakpoint-up(sm) {
+              html {
+                font-size: 1.2rem;
+              }
+            }
+
+            @include media-breakpoint-up(md) {
+              html {
+                font-size: 1.4rem;
+              }
+            }
+
+            @include media-breakpoint-up(lg) {
+              html {
+                font-size: 1.6rem;
+              }
+            }
+            .nav-tabs .nav-link{
+                margin: 0px 3px;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .bg-dark {
+                background-color: #001b69!important;
+                box-shadow: 0 0.25rem 0.5rem 0 #E91E63;
+            }
+            .navbar-dark .navbar-nav .nav-link {
+                color: rgba(255,255,255);
+            }
+            #navbar-menu > ul > li > a{
+                font-size: 1.05rem;
+                padding: 10px 10px;
+            }
+            .navbar-brand{
+                font-size: 1.45rem;
+                font-weight: 700;
+            }
+            .navbar.navbar-dark .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 5px;
+            }
+            #navbar-menu > ul > li{
+                margin: 0px 10px;
+            }
+            .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                color: #fff;
+                background-color: rgba(255,255,255,0.3);
+            }
+            .fa, .fas {
+                margin-right: 3px;
+            }            
+            .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+                color: white;
+                background-color: #001b69;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .nav-tabs .nav-link {
+                color: #E91E63;
+                background-color: #fff;
+                border-color: #ddd #ddd #fff;
+                font-weight: 800;
+                margin: 0px 3px;
+                border-radius: 8px 8px 0px 0px;
+            }
+            .tab-content>.active {
+                height: 80vh;
+                overflow-y: scroll;
+            }
+            .tab-content>.active::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+            }
+
+            .tab-content>.active::-webkit-scrollbar
+            {
+                width: 12px;
+                background-color: #F5F5F5;
+            }
+
+            .tab-content>.active::-webkit-scrollbar-thumb
+            {
+                border-radius: 10px;
+                background-color: #001b69ad; 
+                background-image: -webkit-linear-gradient(45deg,
+                                                          rgba(255, 255, 255, .2) 25%,
+                                                          transparent 25%,
+                                                          transparent 50%,
+                                                          rgba(255, 255, 255, .2) 50%,
+                                                          rgba(255, 255, 255, .2) 75%,
+                                                          transparent 75%,
+                                                          transparent)
+            }
+            #modal_table.table-bordered td, #modal_table.table-bordered th {
+                border: 2px solid #e9ecef;
+            }
+            .modal-header{
+                border: 2px solid #e9ecef;
+            }
+            /*#example > tbody > tr > td:nth-child(2){
+                color: #007bff;
+            }
+
+            #example > tbody > tr > td:nth-child(2):hover {
+                color: #0056b3;
+                text-decoration: underline;
+                cursor: pointer;
+            }*/
+            .label-info {
+                background-color: #5bc0de;
+                display: inline; 
+                padding: .2em .6em .3em; 
+                font-size: 75%; 
+                font-weight: 700; line-height: 1; 
+                color: #fff; 
+                text-align: center; 
+                white-space: nowrap; 
+                vertical-align: baseline; border-radius: .25em;
+                margin-right: 5px;
+            }
+            /*#example > tbody > tr > td:nth-child(6){
+                max-width: 30px; 
+                overflow-wrap: break-word; 
+            }*/
+            .bgimg {
+              /* Background image */
+              background-image: url('static/img/forestbridge.jpg');
+              /* Full-screen */
+              height: 100%;
+              /* Center the background image */
+              background-position: center;
+              /* Scale and zoom in the image */
+              background-size: cover;
+              /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+              position: relative;
+              /* Add a white text color to all elements inside the .bgimg container */
+              color: white;
+              /* Add a font */
+              font-family: "Courier New", Courier, monospace;
+              /* Set the font-size to 25 pixels */
+              font-size: 25px;
+            }
+
+            /* Position text in the top-left corner */
+            .topleft {
+              position: absolute;
+              top: 0;
+              left: 16px;
+            }
+
+            /* Position text in the bottom-left corner */
+            .bottomleft {
+              position: absolute;
+              bottom: 0;
+              left: 16px;
+            }
+
+            /* Position text in the middle */
+            .middle {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              text-align: center;
+            }
+
+            /* Style the <hr> element */
+            hr {
+              margin: auto;
+              width: 40%;
+            }
+            #example > tbody > tr > td:nth-child(5){
+              display: inline-block;
+              width: 180px;
+              white-space: nowrap;
+              overflow: hidden !important;
+              text-overflow: ellipsis;
+            }
+            .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>thead>tr>td, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody>table>tbody>tr>td {
+                 white-space: nowrap;
+             }
+             /* css list with numeber circle background -------------- */
+             .numberlist{
+                width:450px;
+
+              }
+              .numberlist ol{
+                            counter-reset: li;
+                      list-style: none;
+                      *list-style: decimal;
+                      font: 15px 'trebuchet MS', 'lucida sans';
+                      padding: 0;
+                      margin-bottom: 4em;
+
+              }
+              .numberlist ol ol{
+                      margin: 0 0 0 2em;
+                    }
+                    
+              .numberlist a{
+                      position: relative;
+                      display: block;
+                      padding: .4em .4em .4em 2em;
+                      *padding: .4em;
+                      margin: .5em 0;
+                      background: #cbe7f8;
+                      color: #444;
+                      text-decoration: none;
+                      -moz-border-radius: .3em;
+                      -webkit-border-radius: .3em;
+                      border-radius: .3em;
+                    }
+
+              .numberlist a:hover{
+                      background: #fff;
+                      text-decoration:underline;
+                    }
+              .numberlist a:before{
+                      content: counter(li);
+                      counter-increment: li;
+                      position: absolute; 
+                      left: -1.3em;
+                      top: 50%;
+                      margin-top: -1.3em;
+                      background: #87ceeb;
+                      height: 2em;
+                      width: 2em;
+                      line-height: 1.5em;
+                      border: .3em solid #fff;
+                      text-align: center;
+                      font-weight: bold;
+                      -moz-border-radius: 2em;
+                      -webkit-border-radius: 2em;
+                      border-radius: 2em;
+                      color:#FFF;
+                    }
+        </style>       
+    </head>        
+    <body>
+      <script>
+        function clicked(e)
+        {
+            //if(!confirm('Are you sure?'))e.preventDefault();
+        }
+      </script>        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+            <a class="navbar-brand" href="#">
+                Data - Entitlement
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>                
+            <div class="collapse navbar-collapse" id="navbar-menu">   
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link waves-effect waves-light" href="#">
+                        <i class="fas fa-user-shield"></i>  Access Manager
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="#">
+                        <i class="fas fa-glasses"></i>  Audit
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="#">
+                        <i class="fas fa-cogs"></i>  Settings
+                    </a>
+                  </li>
+                </ul>        
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style=" text-transform: capitalize; " id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{user}} 
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                      <a class="dropdown-item" href="#">My account</a>
+                      <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                  </li>
+                </ul>         
+            </div>                            
+        </nav>        
+        <div class="container-fluid">
+            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="access-tab" data-toggle="tab" href="#access" role="tab" aria-controls="access"
+                  aria-selected="true" style="margin-left: 0px;">Table Level Filter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="masking-tab" data-toggle="tab" href="#masking" role="tab" aria-controls="masking"
+                  aria-selected="false">Masking</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="rowLevelFilter-tab" data-toggle="tab" href="#rowLevelFilter" role="tab" aria-controls="rowLevelFilter"
+                  aria-selected="false">Row Level Filter</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="access" role="tabpanel" aria-labelledby="access-tab">
+                    <div class="container-fluid">
+                        <div class="row" style="margin-bottom: 8px;">                            
+                            <div class="col-md-8 col-sm-8">
+                                <h5>List of Policies : Hive</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                              <a href="/accessadd" style=" color: #fff; ">
+                                <button type="button" class="btn btn-primary" style="padding: .25rem 1rem;float: right;background-color:#001b69;border-color: #001b69;">
+                                  Add Policy
+                                </button>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid" style="background-color: white; padding: 15px;">
+                        <form id="form_s" method="POST">
+                            {% csrf_token %}
+                            <table id="example" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Policy_Id</th>
+                                        <th>Policy_Name</th>
+                                        <th>Roles</th>
+                                        <th>Status</th>
+                                        <th>Groups</th>
+                                        <th>ARM#</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <input type="hidden" name="username_">
+                            <input type="hidden" name="password_">
+                            <input type="hidden" name="delete_">
+                        </form>                      
+                    </div>             
+                </div>
+                <!-- Masking -->
+                <div class="tab-pane fade" id="masking" role="tabpanel" aria-labelledby="masking-tab">
+                    <div class="bgimg">
+                      <div class="topleft">
+                        <p>To protect data that is classified as personally identifiable information</p>
+                      </div>
+                      <div class="middle">
+                        <h1>COMING SOON</h1>
+                        <hr>
+                        <p id="demo">5 days</p>
+                      </div>
+                      <div class="bottomleft">
+                        <p><< INSC >></p>
+                      </div>
+                    </div>
+                </div>
+                <!-- ROW Level Filter -->
+                <div class="tab-pane fade" id="rowLevelFilter" role="tabpanel" aria-labelledby="rowLevelFilter-tab">
+                    <div class="container-fluid">
+                        <div class="row" style="margin-bottom: 8px;">                            
+                            <div class="col-md-8 col-sm-8">
+                                <h5>List of Policies : Hive</h5>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                              <a href="/rlaadd" style=" color: #fff; ">
+                                <button type="button" class="btn btn-primary" style="padding: .25rem 1rem;float: right;background-color: #001b69;border-color: #001b69;">
+                                  Add Policy
+                                </button>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid" style="background-color: white; padding: 15px;">
+                        <form action="/policyList" method="POST">
+                            {% csrf_token %}
+                            <table id="rlf" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Policy_Id</th>
+                                        <th>Policy_Name</th>
+                                        <th>Roles</th>
+                                        <th>Status</th>
+                                        <th>Groups</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                        </form>                      
+                    </div> 
+                </div>
+                </div>
+        </div>
+        <div class="container-fluid">
+          
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-lg  modal-md  modal-sm" role="document">                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Policy Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid"><h6>Policy Details:</h6></div>
+                        <div class="line" style="width:96%;height:1px;border-bottom:1.5px dashed rgba(255, 0, 0, .4);margin:10px;"></div>
+                        <table id="modal_table" class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Policy ID</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Policy Name</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Policy DataBase</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Policy Table</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Policy Column</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Audit Logging</th>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="container-fluid"><h6>Policy Details:</h6></div>
+                        <div class="line" style="width:96%;height:1px;border-bottom:1.5px dashed rgba(255, 0, 0, .4);margin:10px;"></div>
+                        <div class="overflow-auto" style="overflow-x: scroll;">
+                            <table id="modal_table" class="table table-bordered">
+                                <tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Select Group</th>
+                                            <th>Role</th>
+                                            <th>Permission</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td style=" max-width: 200px; overflow-wrap: break-word; ">
+                                            
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <!--Creds Modal -->
+        <div class="modal fade creds-modal-md" tabindex="-1" role="dialog" aria-labelledby="creds" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                <div class="modal-content" style="border: 0;">
+                    <form id="form_popup">
+                        <div class="modal-header bg-dark" style=" border: 0; border-bottom: transparent; ">
+                            <div class="container">
+                                <p class="modal-title text-center text-uppercase" style="color: white;">
+                                    <strong>Hive Credentials</strong>
+                                </p>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=" background: gray; padding: 2px 5px; ">
+                                    <span aria-hidden="true" style="color: aliceblue;">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-6">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">User Name</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="text" name="username" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-6">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="password" name="password" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary waves-effect waves-light" id="submit" name="submit">Authenticate & Delete</button>
+                            <button data-dismiss="modal" type="button" class="btn btn-outline-primary waves-effect waves-light">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Banner Modal -->
+        <div class="modal fade banner-modal-md" tabindex="-1" role="dialog" aria-labelledby="banner" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                <div class="modal-content" style="border: 0;">
+                    <form id="form_popup">
+                        <div class="modal-header bg-dark" style=" border: 0; border-bottom: transparent; ">
+                            <div class="container">
+                                <p class="modal-title text-center text-uppercase" style="color: white;">
+                                    <strong>Log Details</strong>
+                                </p>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=" background: gray; padding: 2px 5px; ">
+                                    <span aria-hidden="true" style="color: aliceblue;">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="numberlist">
+                                  <ol>
+                                    {% for i in banner %}
+                                    <li>
+                                      <a>{{i}}</a>
+                                    </li>
+                                    {% endfor %}
+                                  </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/d3_v3.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/js.cookie.js' %}"></script>
+        <script src="{% static 'js/csrf.js' %}"></script>
+        <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+        <script src="{% static 'validation/jquery.validate.js' %}"  type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var data_from_django = {{ data|safe }};
+                console.log(data_from_django)
+                var data_ = {{ data|safe }};
+                var  grpng = d3.nest().key(function(d) { return d[0]; }).key(function(d) { return d[4]; }).entries(data_);
+                var mapp = grpng.map(function(d,i){
+                  conct = ''
+                  if(d.children.length>1){
+                      childrenname = d.children.map(function(e,j){return e.name})
+                      conct=childrenname.join(',');
+                  }else{
+                      conct=d.children[0].name
+                  }
+                lst = d.children[0].children[0]
+                lst[4]=conct
+                return lst
+                })
+                console.log(grpng)
+                var mapp_ = grpng.map(function(d,i){
+                  conct = ''
+                  if(d.children.length>1){
+                      childrenname = d.children.map(function(e,j){return e.name})
+                      conct=childrenname.join(',');
+                  }else{
+                      conct=d.children[0].name
+                  }
+                lst = d.children[0].children[0]
+                lst[4]=conct
+                return lst
+                })
+
+                function action_column(argument) {
+                    $("#example > tbody > tr > td:nth-child(7)").html(function(d,i){
+                        var action = "<div class='btn-group action_' role='group' aria-label=''><button type='button' name='action' title='view' data-toggle='modal' data-target='#exampleModal' class='btn btn-info'><i class='far fa-eye'></i></button><button name='edit' value='"+$(this).parent().attr("data-id")+"_edit' title='Edit' class='btn btn-default'><i class='far fa-edit'></i></button><button type='button' title='Delete' data-toggle='modal' data-target='.creds-modal-md'  onclick='clicked(event)' name='delete' value='"+$(this).parent().attr("data-id")+"_delete' class='btn btn-danger'><i class='fas fa-trash-alt'></i></button></div>";
+                        return action;
+                    });
+                    $("div.btn-group.action_ > .btn").css("padding","0px 15px");
+                    $("div.btn-group.action_ > .btn > .fas, div.btn-group.action_ > .btn > .far").css({"font-size":"10px","line-height":"2"});
+                }
+                var table_policy = $('#example').DataTable({
+                        "scrollX": true,
+                        "scrollY": true,
+                        "createdRow": function (row, data, dataIndex) {
+                            $(row).attr('data-id', data[0]);
+                            $(row).attr('data-name', data[1]);
+                            $(row).attr('data-role', data[2]);
+                            $(row).attr('data-status', data[3]);
+                            $(row).attr('data-db', data[4]);
+                            $(row).attr('data-tables', data[5]);
+                            $(row).attr('data-columns', data[6]);
+                            $(row).attr('data-comment', data[10]);
+                            $(row).attr('data-permission', data[8]);
+                            $(row).attr('data-groups', data[9]);
+                            $(row).attr('data-role', data[1]);
+                            //policy_id policy_name policy_labels   status  audit_logging   groups  users   action  database    table   column  description delegate_admin  permission
+
+                        },
+                        "fnDrawCallback": function( oSettings ) {
+                          action_column(oSettings);
+                        },
+                });
+                // $('#rlf').DataTable();
+                // table_policy.on('search.dt', function() {//action_column();
+                // });
+                // table_policy.on('datachange.dt', function() {//console.log("pagination")
+                // });                
+                // table_policy.on( 'page.dt', function () {   //action_column();
+                // });
+                mapp.map(function(d,i){d.splice(5,0,'TBD')
+                        return d;
+                        })
+                console.log(mapp)
+                table_policy.rows.add($(mapp)).draw();//DATA IS GETTING AADDED TO DATATABLE
+                //xaction_column();
+                $('#exampleModal').on('show.bs.modal', function (event) {
+                    // if you wnat to take the text of the first cell 
+                    //var getIdFromRow = $(event.relatedTarget).find('td:first-child').text();
+                    vlue1  = jQuery.grep(data_from_django , function( a ) { return a[0] ==$(event.relatedTarget).parent().parent().parent().attr('data-id');});
+                    console.log(vlue1)
+                    vlue =[
+                    $(event.relatedTarget).parent().parent().parent().attr('data-id'),
+                    $(event.relatedTarget).parent().parent().parent().attr('data-name'),
+                    d3.nest().key(function(d) { return d[6]; }).entries(vlue1).map(function(d,i){return d.name}).join(' , '),
+                    d3.nest().key(function(d) { return d[7]; }).entries(vlue1).map(function(d,i){return d.name}).join(' , '),
+                    d3.nest().key(function(d) { return d[8]; }).entries(vlue1).map(function(d,i){return d.name}).join(' , '),
+                    $(event.relatedTarget).parent().parent().parent().attr('data-comment'),
+                    'TBD'
+                    ]      
+                    setTimeout(function(){
+                        $('#modal_table > tbody > tr > td').html(function(d,i) {return vlue[d]; });
+                        $('#modal_table > tbody:nth-child(3)').html(function(d,i) {
+                          htmll=""
+                           d3.nest().key(function(d) { return d[4]+","+d[2]+","+d[5]; }).entries(vlue1).map(function(e,j){console.log(e,j)
+                            htmll = htmll + "<tr><td>"+e.name.split(',')[0]+"</td><td>"+e.name.split(',')[1]+"</td><td>"+e.name.split(',')[2]+"</td></tr>"
+                           })
+                           return htmll;
+                        });
+                        /*$('#modal_table > tbody:nth-child(3) > tr > td').html(function(d,i) {
+                            if(d==1 || d==0 || d==2){
+                                htmll="";
+                                if(vlue1!=""){
+                                    vlue1[d].split(",").map(function(e,j){
+                                        htmll=htmll+"<span class='label label-info' >"+e+"</span>"
+                                    })
+                                }
+                            }else{
+                                htmll=vlue1[d]
+                            }
+                            return htmll;
+                         });*/
+                    },200);
+                });
+                // Set the date we're counting down to
+                var countDownDate = new Date("Jan 15, 2020 15:37:25").getTime();
+                // Update the count down every 1 second
+                var x = setInterval(function() {
+                  // Get todays date and time
+                  var now = new Date().getTime();
+                  // Find the distance between now an the count down date
+                  var distance = countDownDate - now;
+                  // Time calculations for days, hours, minutes and seconds
+                  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                  // Display the result in an element with id="demo"
+                  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                  + minutes + "m " + seconds + "s ";
+                  // If the count down is finished, write some text
+                  if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                  }
+                }, 1000);
+                $('button[name=edit]').click(function(){
+                  $('#form_s').prop('action', '/accessedit');
+                  $('#form_s').submit();
+                });
+                $('.creds-modal-md').on('show.bs.modal', function (event) {
+                    $('input[name=delete_]').val($(event.relatedTarget).val())
+                  })
+                $('button[name=submit]').click(function(){
+                  if ($("#form_s").valid() &&  $("#form_popup").valid()){
+                        $("input[name=username_]").val($("input[name=username]").val())
+                        $("input[name=password_]").val($("input[name=password]").val())
+                        $('#form_s').prop('action', '/accessList');
+                        $('#form_s').submit();
+                      }
+                });
+            });
+        </script>  
+        {% if banner %} 
+        <script type="text/javascript">
+          $('.banner-modal-md').modal('show');
+          console.log("{{banner}}")
+        </script>     
+        {% endif %} 
+    </body>    
+</html>
+
+
+----------------------------------------------------------------------------------------------
+
+add.html
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <title>BoA - Data Entitlement</title>
+        <link rel="icon" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="icon" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">              
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">   
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+        <link href="{% static 'css/bootstrap-select.css' %}"  rel="stylesheet"/>
+        <link href="{% static 'css/bootstrap-toggle.min.css' %}"  rel="stylesheet"/>
+        <style type="text/css">
+            body{
+                background-color: #eee;
+            }
+            html {
+              font-size: 1rem;
+            }
+
+            @include media-breakpoint-up(sm) {
+              html {
+                font-size: 1.2rem;
+              }
+            }
+
+            @include media-breakpoint-up(md) {
+              html {
+                font-size: 1.4rem;
+              }
+            }
+
+            @include media-breakpoint-up(lg) {
+              html {
+                font-size: 1.6rem;
+              }
+            }
+            .nav-tabs .nav-link{
+                margin: 0px 3px;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .bg-dark {
+                background-color: #001b69!important;
+                box-shadow: 0 0.25rem 0.5rem 0 #E91E63;
+            }
+            .navbar-dark .navbar-nav .nav-link {
+                color: rgba(255,255,255);
+            }
+            #navbar-menu > ul > li > a{
+                font-size: 1.05rem;
+                padding: 10px 10px;
+            }
+            .navbar-brand{
+                font-size: 1.45rem;
+                font-weight: 700;
+            }
+            .navbar.navbar-dark .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 5px;
+            }
+            #navbar-menu > ul > li{
+                margin: 0px 10px;
+            }
+            .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                color: #fff;
+                background-color: rgba(255,255,255,0.3);
+            }
+            .fa, .fas {
+                margin-right: 3px;
+            }            
+            .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+                color: white;
+                background-color: #001b69;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .nav-tabs .nav-link {
+                color: #E91E63;
+                background-color: #fff;
+                border-color: #ddd #ddd #fff;
+                font-weight: 800;
+                margin: 0px 3px;
+                border-radius: 8px 8px 0px 0px;
+            }
+            .tab-content>.active {
+                height: 80vh;
+                overflow-y: scroll;
+            }
+            #add_edit::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+            }
+
+            #add_edit::-webkit-scrollbar
+            {
+                width: 12px;
+                background-color: #F5F5F5;
+            }
+
+            #add_edit::-webkit-scrollbar-thumb
+            {
+                border-radius: 10px;
+                background-color: #001b69ad; 
+                background-image: -webkit-linear-gradient(45deg,
+                                                          rgba(255, 255, 255, .2) 25%,
+                                                          transparent 25%,
+                                                          transparent 50%,
+                                                          rgba(255, 255, 255, .2) 50%,
+                                                          rgba(255, 255, 255, .2) 75%,
+                                                          transparent 75%,
+                                                          transparent)
+            }
+            #modal_table.table-bordered td, #modal_table.table-bordered th {
+                border: 2px solid #e9ecef;
+            }
+            .modal-header{
+                border: 2px solid #e9ecef;
+            }
+            /*#example > tbody > tr > td:nth-child(2){
+                color: #007bff;
+            }
+
+            #example > tbody > tr > td:nth-child(2):hover {
+                color: #0056b3;
+                text-decoration: underline;
+                cursor: pointer;
+            }*/
+            .label-info {
+                background-color: #5bc0de;
+                display: inline; 
+                padding: .2em .6em .3em; 
+                font-size: 75%; 
+                font-weight: 700; line-height: 1; 
+                color: #fff; 
+                text-align: center; 
+                white-space: nowrap; 
+                vertical-align: baseline; border-radius: .25em;
+                margin-right: 5px;
+            }
+            .inputlabel{
+                text-align: right;
+            }
+            /*#add_edit * > .col-md-2.col-sm-6.col-xs-6.visible-xs{
+                text-align: center;
+            }*/
+            #add_edit * > .row{
+                margin-bottom: 10px;
+            }
+            @media only screen and (max-width: 600px) {
+              #add_edit * > .col-md-2.col-sm-6.col-xs-6.visible-xs{
+                text-align: center;
+                }
+            }
+            @media only screen and (max-width: 600px) {
+              #add_edit * > .col-md-2.col-sm-6.col-xs-6.visible-xs{
+                text-align: center;
+                }
+            }
+            .btn-default {
+                color: #333;
+                background-color: #fff;
+                border-color: #ccc;
+            }
+            .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+                border-radius: 20rem; 
+            }
+            .toggle.ios .toggle-handle { 
+                border-radius: 20rem; 
+            }
+            /*.toggle.btn{
+                border-radius: 20px;
+                max-height: 30px;
+            }
+            .btn.btn-default.active.toggle-off, .btn.btn-default.active.toggle-on{
+                line-height: 0.6;
+            }*/
+            #auditLogging * > .btn-primary, #policyName * > .btn-primary {
+                    color: #F5F5F5;
+                    background-color: #9E9E9E;
+                    border-color: #212121;
+            }
+            [data-toggle="collapse"] .fa:before {   
+              content: "\f13a";
+            }
+
+            [data-toggle="collapse"].collapsed .fa:before {
+              content: "\f139";
+            }
+            #allowConditions > tbody > tr{
+                text-align: center;
+            }
+            #addAllowCondition{
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                padding: 5px;
+                float: right;
+                margin-bottom: 10px;
+                color: #868e86;
+                border: 2px solid #868e86!important;
+                cursor: pointer;
+            }
+            #addAllowCondition:hover{
+                width: 123px;
+                height: 35px;
+                border-radius: 5px;
+                padding: 3px;
+                float: right;
+                margin-bottom: 10px;
+                color: black;
+                border: 2px solid black!important;
+            }
+            #back_:hover{
+                text-decoration: underline;
+                color: gainsboro !important;
+            }
+            .table-fixed thead {
+              width: 97%;
+            }
+            .table-fixed tbody {
+              /*height: 230px;*/
+              overflow-y: auto;
+              width: 100%;
+            }
+            .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+              /*display: block;*/
+            }
+            .table-fixed tbody td, .table-fixed thead > tr> th {
+              /*float: left;
+              border-bottom-width: 0;*/
+            }
+            @media only screen and (max-width: 377px) {
+              #add_edit {
+                height: 77vh !important;
+                }
+            }
+        </style>       
+    </head>        
+    <body>        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3" style="margin-bottom: 0.5rem!important;">
+            <a class="navbar-brand" href="#">
+                Data - Entitlement
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>                
+            <div class="collapse navbar-collapse" id="navbar-menu">   
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect waves-light" href="/accessList" title="Return to Access List Page">
+                            <i class="fas fa-user-shield"></i>  Access Manager
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="#">
+                            <i class="fas fa-glasses"></i>  Audit
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="#">
+                            <i class="fas fa-cogs"></i>  Settings
+                        </a>
+                    </li>
+                </ul>        
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style=" text-transform: capitalize; " id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> {{user}} 
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                      <a class="dropdown-item" href="#">My account</a>
+                      <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                  </li>
+                </ul>         
+            </div>                            
+        </nav>
+        <form id="form_s"    method="POST">
+            {% csrf_token %}      
+            <div class="container-fluid">
+                <h5 style="text-align:center;color: gray;font-weight: 700;text-shadow: 1px 1px salmon;font-size:1.5rem;">Access ADD Policy</h5>
+                <div class="container-fluid" id="add_edit" style="background-color: white; padding: 15px;height: 80vh;overflow-y: scroll;">
+                    <div class="container-fluid">
+                        <div class="row" style=" margin-bottom: 0px; ">
+                            <div class="col-md-9 col-sm-10 col-xs-10" style="padding-left: 0px;">
+                                <h5 style="color:#00008b80;">Policy Details</h5>                            
+                            </div>
+                            <div class="col-md-3  col-sm-2 col-xs-2">
+                                <a href="/accessList" class="panel-title float-right" style="margin-top: -5px; cursor: pointer;color: #9E9E9E; font-weight: 700; "> 
+                                    <i class="fas fa-caret-left" style="color: #9E9E9E;margin-left: -14px;font-size: 35px;"></i>
+                                    <div style="margin-top: -31px;">
+                                        <span id="back_" style="color: white;background: #9E9E9E;margin-bottom: 0px;padding: 0px 5px;">Back To Policy List</span> 
+                                    </div>
+                                </a>  
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="line" style="width: 100%;height: 1px;border-bottom: 1.5px dashed rgba(255, 0, 0, .4);margin-bottom: 10px;"></div>
+                            <div class="container-fluid">
+                                <div class="row" id="policyType">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Policy Type</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs" >
+                                        <span  class='label label-info'  >Access</span>
+                                        <input type="hidden" name="access_type" value="access">
+                                    </div>
+                                </div>
+                                <div class="row" id="policyName">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Policy Name</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs" style=" margin-bottom: 10px; ">
+                                        <input  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="text" name="policyName_" required>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 visible-xs"> 
+                                        <!-- <input id="policyEnable" name="policyEnable" type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled"> -->
+                                        <!-- <input id="policyNormal" type="checkbox" data-toggle="toggle" data-on="Normal" data-off="Unusual"> -->
+                                    </div>
+                                </div>
+                                <div class="row" id="policyDatabase">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Policy Database</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <select name="policyDatabase_" id="policyDatabase_"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true" required>
+                                            {% for i in databaselist %}
+                                            <option value="{{ i.db_id }}" {% if i.db_name in selected_db %}Selected{% endif %} >{{ i.db_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 visible-xs">
+                                        <div id="db_status" class="alert alert-success alert-dismissible" style="margin-bottom: 0rem;padding: 5px 1.25rem;display: none;">
+                                        </div>                                      
+                                    </div>
+                                </div> 
+                                <div class="row" id="policyTable">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Policy Table</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <select name="policyTable_" id="policyTable_"  multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true" >
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 visible-xs">
+                                        <div id="column_status" class="alert alert-success alert-dismissible" style="margin-bottom: 0rem;padding: 5px 1.25rem;display: none;">
+                                        </div>                                      
+                                    </div>
+                                </div>  
+                                <div class="row" id="policyColumn">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Policy Column</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <select name="policyColumn_"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true" >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" id="description">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <textarea class="form-control rounded-0" id="description" name="description" rows="3" ></textarea>
+                                    </div>
+                                </div>
+                                <!-- <div class="row" id="auditLogging">
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Audit Logging</span>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                        <input id="auditLogging" type="checkbox" checked data-toggle="toggle" data-style="ios" data-on="Yes" data-off="No">
+                                    </div>
+                                </div>   -->           
+                            </div>
+                            <!-- Allow Condition -->
+                            <div class="container-fluid">
+                                <div class="row" style=" margin-bottom: 0px; ">
+                                    <div class="col-md-10 col-sm-10 col-xs-10" style="padding-left: 0px;">
+                                        <h5 style="color:#00008b80;">Allow Conditions</h5>                            
+                                    </div>
+                                    <div class="col-md-2  col-sm-2 col-xs-2">
+                                        <a class="panel-title float-right" style="cursor: pointer;color: #9E9E9E; font-weight: 700; " data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Hide 
+                                            <i class="fa" style="color: #9E9E9E;"></i> 
+                                        </a>  
+                                    </div>
+                                </div>
+                            </div>  
+                    <div class="line" style="width: 100%;height: 1px;border-bottom:1.5px dashed rgba(255, 0, 0, .4);margin-bottom: 10px;">                    
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="collapse show in" id="multiCollapseExample1" style="width: 100%;">
+                                <div class="container-fluid">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0;">
+                                        <!-- <button type="button" class="btn btn-primary" style="padding: .25rem 1rem;float: right;background-color: #001b69;border-color: #001b69;margin-bottom: 10px;">
+                                            <a style=" color: #fff; ">+</a>
+                                        </button> -->
+                                        <div class="border border-secondary" id="addAllowCondition">
+                                            <svg aria-hidden="true" style=" max-width: 25px; float: right; margin-bottom: 20px; " focusable="false" data-prefix="fad" data-icon="layer-plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-layer-plus fa-w-16 fa-3x">
+                                                <g class="fa-group">
+                                                    <path fill="currentColor" d="M400 288c16.73 0 32.68-2.91 48-7.29v18.58l-181.36 82.2a25.68 25.68 0 0 1-21.29 0L12.41 275.9c-16.55-7.5-16.55-32.5 0-40l213.87-97C239.28 223.32 312 288 400 288z" class="fa-secondary">                  
+                                                    </path>
+                                                    <path fill="currentColor" d="M499.59 364.1l-58.54-26.53-161.19 73.06a57.64 57.64 0 0 1-47.72 0L71 337.57 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59a25.68 25.68 0 0 0 21.29 0l233-105.59c16.5-7.5 16.5-32.5-.05-40zM304 144h64v64a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-64h64a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16h-64V16a16 16 0 0 0-16-16h-32a16 16 0 0 0-16 16v64h-64a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z" class="fa-primary">                                            
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                            Add - Row
+                                        </div>
+                                    </div>                                
+                                    <div class="card card-body" style=" width: 100%;height: 160px;overflow-y: scroll;">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style=" width: 100%;">
+                                            <input type="hidden" name="noofrecords" id="noofrecords" value="0">
+                                            <table class="table table-bordered  table-fixed" id="allowConditions">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">AD - Group</th>
+                                                        <th scope="col">Role</th>
+                                                        <th scope="col">Permission</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="row_0">
+                                                        <td>
+                                                            <!-- <select name="ad_group_0" id="ad_group_0"   data-weight="100px" class="form-control" data-container="body"  data-actions-box="true" data-live-search="true">
+                                                                <option>Select</option>
+                                                                {% for i in ad_group_list %}
+                                                                <option value="{{ i.0 }}" style="text-transform: capitalize;">{{ i.1 }}</option>
+                                                                {% endfor %}
+                                                            </select>  -->
+                                                            <input type="input" name="ad_group_0" class="form-control" id="ad_group_0" required>                                        
+                                                        </td>
+                                                        <td>
+                                                            <select name="roleColumn_0" id="roleColumn_0" data-weight="100px" data-container="body" class="form-control"  data-actions-box="true" data-live-search="true" required>
+                                                                <option></option>
+                                                                {% for i in rolelist %}
+                                                                <option value="{{ i.0 }}" style="text-transform: capitalize;">{{ i.1 }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="permission_0" id="permission_0"  data-weight="100px" class="form-control" data-container="body" data-actions-box="true" data-live-search="true" required>
+                                                                <option></option>
+                                                            </select>
+                                                        </td>
+                                                        <td>                                           
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>  
+                                        </div>                                                           
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col text-center" style="padding:5px 0;">
+                    <input type="hidden" name="username">
+                    <input type="hidden" name="password">
+                    <button  class="btn btn-success" type="button" data-toggle="modal" data-target=".creds-modal-md">Add Credentials</button>
+                    <a href="/accessList"><button type="button" class="btn btn-primary">Cancel</button></a>
+                </div>
+              </div>
+            </div>
+        </form>
+        <div class="modal fade creds-modal-md" tabindex="-1" role="dialog" aria-labelledby="creds" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                <div class="modal-content" style="border: 0;">
+                    <form id="form_popup">
+                        <div class="modal-header bg-dark" style=" border: 0; border-bottom: transparent; ">
+                            <div class="container">
+                                <p class="modal-title text-center text-uppercase" style="color: white;">
+                                    <strong>Hive Credentials</strong>
+                                </p>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=" background: gray; padding: 2px 5px; ">
+                                    <span aria-hidden="true" style="color: aliceblue;">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-6">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">User Name</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="text" name="username_" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="col-xs-6">
+                                            <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="password" name="password_" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary waves-effect waves-light" id="submit" name="submit">Add Policy</button>
+                            <button data-dismiss="modal" type="button" class="btn btn-outline-primary waves-effect waves-light">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="container-fluid">
+            <div class="container">
+                <button type="button" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-primary">Cancel</button>
+            </div>
+        </div>  -->       
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-select.js' %}"  type="text/javascript"></script>
+        <script src="{% static 'js/bootstrap-toggle.min.js' %}"  type="text/javascript"></script>
+        <script src="{% static 'validation/jquery.validate.js' %}"  type="text/javascript"></script>
+        <!-- <script src="{% static 'js/js.cookie.js' %}"></script> -->
+        <!-- <script src="{% static 'js/csrf.js' %}"></script> -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('button[name=submit]').click(function(){
+                    if ($("#form_s").valid() &&  $("#form_popup").valid()){
+                        $("input[name=username]").val($("input[name=username_]").val())
+                        $("input[name=password]").val($("input[name=password_]").val())
+                        $('#form_s').prop('action', '/accessadd');
+                        $('#form_s').submit();
+                    }
+                    $("#form_s").valid();
+                    // $("#form_popup").valid();                    
+                    // $('#form_s').prop('action', '/accessadd');
+                    // $('#form_s').submit();
+                });
+                var data_from_django = '{{ data|safe }}';
+                /*$('#policyEnable').bootstrapToggle({
+                      on: 'Enabled',
+                      off: 'Disabled'
+                    });
+                $("#policyEnable").change(function(){
+                    if(this.checked == true)
+                    {
+                        s = 'on';
+                    }
+                    else
+                    {
+                        s = 'off';        
+                    }
+                    
+                });*/
+                /*$('#policyEnable').click()
+                $('#policyEnable').prop('checked')*/
+                var counter = 0;
+                var counter_increment = 0
+                var data_ = {{ rolelist|safe }};
+                var ad_group_list = {{ ad_group_list|safe }};
+                
+                $("#addAllowCondition").on("click", function () {
+                    counter++;
+                    counter_increment++;
+                    var newRow = $("<tr id='row_"+counter_increment+"' >");
+                    var cols = "";
+                    cols += "<td><input id='ad_group_"+counter_increment+"' name='ad_group_"+counter_increment+"' class='form-control' ></td>";
+                    cols += "<td></td>";
+                    cols += "<td></td>";
+                    cols += "<td><button type='button' title='Delete' name='action' class='btn btn-danger ibtnDel' style='padding: 0px 15px;cursor: pointer;'><i class='fas fa-trash-alt' style='font-size: 12px; line-height: 2;'></i></button></td>";
+                    newRow.append(cols);
+                    $("table#allowConditions").append(newRow);   
+                    /*var $ad_group_ = $('<select/>', {
+                            'class':"form-control",
+                            'name':"ad_group_"+ counter ,
+                            'id':"ad_group_"+ counter ,
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });*/
+                    var $roleColumn_ = $('<select/>', {
+                            'class':"form-control",
+                            'name':"roleColumn_"+ counter_increment ,
+                            'id':"roleColumn_"+ counter_increment ,
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });
+                    var $permission_ = $('<select/>', {
+                            'class':"form-control",
+                            'name':"permission_"+ counter_increment ,
+                            'id':"permission_"+ counter_increment ,
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });
+                    /*$ad_group_.append('<option > Select </option>');
+                    for (var i = 0; i < ad_group_list.length; i++) {
+                        $ad_group_.append('<option value=' + ad_group_list[i][0] + '>' + ad_group_list[i][1] + '</option>');
+                    }*/
+                    $roleColumn_.append('<option > Select </option>');
+                    for (var i = 0; i < data_.length; i++) {
+                        $roleColumn_.append('<option value=' + data_[i][0] + '>' + data_[i][1] + '</option>');
+                    }
+                    /*$ad_group_.appendTo('#row_'+counter+" > td:nth-child(1)");*/
+                    $roleColumn_.appendTo('#row_'+counter_increment+" > td:nth-child(2)");
+                    $permission_.appendTo('#row_'+counter_increment+" > td:nth-child(3)");
+                    var role_id = 'Select';
+                    $('#allowConditions > tbody > tr > td:nth-child(2) > select').on("change", function(d,i){
+                        if(role_id!=$('#'+d.target.id).val()){
+                            role_id =  $('#'+d.target.id).val();
+                            url_ = '/matching_permission/'
+                            console.log(location.origin+'/matching_permission/')
+                            $.ajax({                       
+                                url: url_,
+                                contentType: "application/json",
+                                dataType: "json",
+                                type:"GET",
+                                cache:'true',
+                                data: {
+                                  'role_id': role_id.replace("roleColumn_", ""),
+                                },
+                                success: function (data) {
+                                    $("#permission_"+d.target.id.replace("roleColumn_", "")).find('option').remove();
+                                    data.genres.map(function(h,m){
+                                        $("#permission_"+d.target.id.replace("roleColumn_", "")).append("<option value='"+h[0]+"'>"+h[1]+"</option>")
+                                    });
+                                }
+                              });
+                        }
+                    });
+                    arr = []
+                    $("#allowConditions").find("tbody").find("tr").map(function(d,i){ arr.push($(i).attr("id").split("_")[1])})
+                    
+                    $("#noofrecords").val(arr.join(","));
+                });
+                $("table#allowConditions").on("click", ".btn.btn-danger.ibtnDel ", function (event) {
+                    $(this).closest("tr").remove();       
+                    counter -= 1
+                    arr = []                    
+                    $("#allowConditions").find("tbody").find("tr").map(function(d,i){ arr.push($(i).attr("id").split("_")[1])})
+                    $("#noofrecords").val(arr.join(","));
+                });
+                $("select[name=policyDatabase_]").on("change", function() {
+                    //$( "#myselect option:selected" ).text()
+                    //'db_id': $("select[name=policyDatabase_]").val().toString()
+                    
+                    dw=[]
+                    $("#policyDatabase_ option:selected").text(function(d,i){dw.push(i)});
+                    console.log(dw)
+                    dw_ = "'"+dw.join("','")+"'"
+                    if (dw.indexOf('ALL') >=0) {
+                        $("#db_status").html("Please <strong>Skip</strong> Table and Column selection, because you selected 'ALL'. <button type='button' class='close' data-dismiss='alert'>&times;</button>");
+                        $("#db_status").show()
+                       $("#db_status").delay(5000).fadeOut();
+                    }else
+                    {
+                        $("#db_status").html("Selected <strong>Databses</strong> are added. <button type='button' class='close' data-dismiss='alert'>&times;</button>");
+                        $("#db_status").show()
+                        $("#db_status").delay(5000).fadeOut();
+
+                    }
+                    console.log(dw_)                    
+                    url_ = '/matching_table/'
+                    console.log(location.origin+'/matching_table/')
+                    $.ajax({                       
+                        url: url_,
+                        contentType: "application/json",
+                        dataType: "json",
+                        type:"GET",
+                        cache:'true',
+                        data: {
+                          'db_id': dw_ 
+                        },
+                        success: function (data) {
+                            console.log("------>",data)
+                            $("select[name=policyTable_]").find('option').remove();
+                            data.genres.map(function(h,m){
+                                $("select[name=policyTable_]").append("<option value='"+h[0]+"'>"+h[2]+"."+h[3]+"</option>")
+                            });
+                            /*$("select[name=policyTable_]").selectpicker("selectAll");*/
+                            $("select[name=policyTable_]").selectpicker('refresh');
+                        }
+                      });
+                });
+                $("select[name=policyTable_]").on("change", function() {
+                    dw=[]
+                    $("#policyTable_  option:selected").text(function(d,i){dw.push(i)});
+                    console.log(dw,dw.length)
+                    if (dw.length ==0){console.log("zero")
+                        $("#column_status").html("U have Selected <strong>ALL</strong> Database tables. <button type='button' class='close' data-dismiss='alert'>&times;</button>");
+                        $("#column_status").show()
+                        $("#column_status").delay(5000).fadeOut();   
+                    }else if(dw.length >0) {
+                        $("#column_status").html("Please <strong>Select all tables/Deselect </strong>all tables belongsto a DB to select particular DB Completely . <button type='button' class='close' data-dismiss='alert'>&times;</button>");
+                        $("#column_status").show()
+                        $("#column_status").delay(5000).fadeOut();
+                    }
+                    url_ = '/matching_column/'
+                    console.log(location.origin+'/matching_column/')
+                    $.ajax({                       
+                        url: url_,
+                        contentType: "application/json",
+                        dataType: "json",
+                        type:"GET",
+                        cache:'true',
+                        data: {
+                          'db_id': $("select[name=policyDatabase_]").val().toString(),
+                          'table_id': $("select[name=policyTable_]").val().toString()  
+                        },
+                        success: function (data) {
+                            $("select[name=policyColumn_]").find('option').remove();
+                            data.genres.map(function(h,m){
+                                $("select[name=policyColumn_]").append("<option value='"+h[4]+","+h[3]+","+h[0]+"'>"+h[1]+"."+h[2]+"</option>")
+                            });
+                            $("select[name=policyColumn_]").selectpicker('refresh');
+                        }
+                      });
+                });
+                var role_id = 'Select';
+                $('#allowConditions > tbody > tr > td:nth-child(2) > select').on("change", function(d,i){
+                    if(role_id!=$('#'+d.target.id).val()){
+                        role_id =  $('#'+d.target.id).val();
+                        url_ = '/matching_permission/'
+                        console.log(location.origin+'/matching_permission/')
+                        $.ajax({                       
+                            url: url_,
+                            contentType: "application/json",
+                            dataType: "json",
+                            type:"GET",
+                            cache:'true',
+                            data: {
+                              'role_id': role_id.replace("roleColumn_", ""),
+                            },
+                            success: function (data) {
+                                $("#permission_"+d.target.id.replace("roleColumn_", "")).find('option').remove();
+                                data.genres.map(function(h,m){
+                                    $("#permission_"+d.target.id.replace("roleColumn_", "")).append("<option value='"+h[0]+"'>"+h[1]+"</option>")
+                                });
+                            }
+                          });
+                    }
+                });
+            });
+        </script> 
+    </body>    
+</html> 
+
+
+----------------------------------------------------------------------------------------------
+
+edit.html
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <title>BoA - Data Entitlement</title>
+        <link rel="icon" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="icon" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">              
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">   
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+        <link href="{% static 'css/bootstrap-select.css' %}"  rel="stylesheet"/>
+        <link href="{% static 'css/bootstrap-toggle.min.css' %}"  rel="stylesheet"/>
+        <style type="text/css">
+            body{
+                background-color: #eee;
+            }
+            html {
+              font-size: 1rem;
+            }
+
+            @include media-breakpoint-up(sm) {
+              html {
+                font-size: 1.2rem;
+              }
+            }
+
+            @include media-breakpoint-up(md) {
+              html {
+                font-size: 1.4rem;
+              }
+            }
+
+            @include media-breakpoint-up(lg) {
+              html {
+                font-size: 1.6rem;
+              }
+            }
+            .nav-tabs .nav-link{
+                margin: 0px 3px;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .bg-dark {
+                background-color: #001b69!important;
+                box-shadow: 0 0.25rem 0.5rem 0 #E91E63;
+            }
+            .navbar-dark .navbar-nav .nav-link {
+                color: rgba(255,255,255);
+            }
+            #navbar-menu > ul > li > a{
+                font-size: 1.05rem;
+                padding: 10px 10px;
+            }
+            .navbar-brand{
+                font-size: 1.45rem;
+                font-weight: 700;
+            }
+            .navbar.navbar-dark .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 5px;
+            }
+            #navbar-menu > ul > li{
+                margin: 0px 10px;
+            }
+            .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                color: #fff;
+                background-color: rgba(255,255,255,0.3);
+            }
+            .fa, .fas {
+                margin-right: 3px;
+            }            
+            .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+                color: white;
+                background-color: #001b69;
+                border-color: #e9ecef #e9ecef #ddd;
+            }
+            .nav-tabs .nav-link {
+                color: #E91E63;
+                background-color: #fff;
+                border-color: #ddd #ddd #fff;
+                font-weight: 800;
+                margin: 0px 3px;
+                border-radius: 8px 8px 0px 0px;
+            }
+            .tab-content>.active {
+                height: 80vh;
+                overflow-y: scroll;
+            }
+            #add_edit::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+                background-color: #F5F5F5;
+            }
+
+            #add_edit::-webkit-scrollbar
+            {
+                width: 12px;
+                background-color: #F5F5F5;
+            }
+
+            #add_edit::-webkit-scrollbar-thumb
+            {
+                border-radius: 10px;
+                background-color: #001b69ad; 
+                background-image: -webkit-linear-gradient(45deg,
+                                                          rgba(255, 255, 255, .2) 25%,
+                                                          transparent 25%,
+                                                          transparent 50%,
+                                                          rgba(255, 255, 255, .2) 50%,
+                                                          rgba(255, 255, 255, .2) 75%,
+                                                          transparent 75%,
+                                                          transparent)
+            }
+            #modal_table.table-bordered td, #modal_table.table-bordered th {
+                border: 2px solid #e9ecef;
+            }
+            .modal-header{
+                border: 2px solid #e9ecef;
+            }
+            /*#example > tbody > tr > td:nth-child(2){
+                color: #007bff;
+            }
+
+            #example > tbody > tr > td:nth-child(2):hover {
+                color: #0056b3;
+                text-decoration: underline;
+                cursor: pointer;
+            }*/
+            .label-info {
+                background-color: #5bc0de;
+                display: inline; 
+                padding: .2em .6em .3em; 
+                font-size: 75%; 
+                font-weight: 700; line-height: 1; 
+                color: #fff; 
+                text-align: center; 
+                white-space: nowrap; 
+                vertical-align: baseline; border-radius: .25em;
+                margin-right: 5px;
+            }
+            .inputlabel{
+                text-align: right;
+            }
+            /*#add_edit * > .col-md-2.col-sm-6.col-xs-6.visible-xs{
+                text-align: center;
+            }*/
+            #add_edit * > .row{
+                margin-bottom: 10px;
+            }
+            @media only screen and (max-width: 600px) {
+              #add_edit * > .col-md-2.col-sm-6.col-xs-6.visible-xs{
+                text-align: center;
+                }
+            }
+            .btn-default {
+                color: #333;
+                background-color: #fff;
+                border-color: #ccc;
+            }
+            .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+                border-radius: 20rem; 
+            }
+            .toggle.ios .toggle-handle { 
+                border-radius: 20rem; 
+            }
+            /*.toggle.btn{
+                border-radius: 20px;
+                max-height: 30px;
+            }
+            .btn.btn-default.active.toggle-off, .btn.btn-default.active.toggle-on{
+                line-height: 0.6;
+            }*/
+            #auditLogging * > .btn-primary, #policyName * > .btn-primary {
+                    color: #F5F5F5;
+                    background-color: #9E9E9E;
+                    border-color: #212121;
+            }
+            [data-toggle="collapse"] .fa:before {   
+              content: "\f13a";
+            }
+
+            [data-toggle="collapse"].collapsed .fa:before {
+              content: "\f139";
+            }
+            #allowConditions > tbody > tr{
+                text-align: center;
+            }
+            #addAllowCondition{
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                padding: 5px;
+                float: right;
+                margin-bottom: 10px;
+                color: #868e86;
+                border: 2px solid #868e86!important;
+                cursor: pointer;
+            }
+            #addAllowCondition:hover{
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                padding: 5px;
+                float: right;
+                margin-bottom: 10px;
+                color: black;
+                border: 2px solid black!important;
+            }
+            #back_:hover{
+                text-decoration: underline;
+                color: gainsboro !important;
+            }
+            .table-fixed thead {
+              width: 97%;
+            }
+            .table-fixed tbody {
+              height: 230px;
+              overflow-y: auto;
+              width: 100%;
+            }
+            .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+              /*display: block;*/
+            }
+            .table-fixed tbody td, .table-fixed thead > tr> th {
+              /*float: left;
+              border-bottom-width: 0;*/
+            }
+            @media only screen and (max-width: 377px) {
+              #add_edit {
+                height: 77vh !important;
+                }
+            }
+            #back_to_home:hover{
+                color: #0056b3;
+                text-decoration: wavy;
+            }
+            /* Center the loader */
+/*            #loader {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              z-index: 1;
+              width: 150px;
+              height: 150px;
+              margin: -75px 0 0 -75px;
+              border: 16px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 16px solid #3498db;
+              width: 120px;
+              height: 120px;
+              -webkit-animation: spin 2s linear infinite;
+              animation: spin 2s linear infinite;
+            }
+
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+
+            // Add animation to "page content"
+            .animatebb {
+              position: relative;
+              -webkit-animation-name: animateb;
+              -webkit-animation-duration: 1s;
+              animation-name: animateb;
+              animation-duration: 1s
+            }
+
+            @-webkit-keyframes animateb {
+              from { bottom:-100px; opacity:0 } 
+              to { bottom:0px; opacity:1 }
+            }
+
+            @keyframes animateb { 
+              from{ bottom:-100px; opacity:0 } 
+              to{ bottom:0; opacity:1 }
+            }
+
+            #myDiv {
+              display: none;
+            }*/
+        </style>       
+    </head>        
+    <!-- <body onload="myFunction()" > -->
+    <body>
+        <script type="text/javascript">
+                /*var myVar;
+                function myFunction() {
+                  myVar = setTimeout(showPage, 3000);
+                }
+                function showPage() {
+                  document.getElementById("loader").style.display = "none";
+                  document.getElementById("myDiv").style.display = "block";
+                }*/
+        </script>
+        <!-- <div id="loader"></div>
+        <div style="display:none;" id="myDiv" class="animatebb"> -->
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+                <a class="navbar-brand" href="#">
+                    Data - Entitlement
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>                
+                <div class="collapse navbar-collapse" id="navbar-menu">   
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect waves-light" href="/accessList" title="Return to Access List Page">
+                                <i class="fas fa-user-shield"></i>  Access Manager
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="#">
+                                <i class="fas fa-glasses"></i>  Audit
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="#">
+                                <i class="fas fa-cogs"></i>  Settings
+                            </a>
+                        </li>
+                    </ul>        
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style=" text-transform: capitalize; " id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i> {{user}} 
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item" href="#">My account</a>
+                                <a class="dropdown-item" href="/logout">Log out</a>
+                            </div>
+                        </li>
+                    </ul>         
+                </div>                            
+            </nav>        
+            <div class="container-fluid">
+                <h5 style="text-align:center;color: gray;font-weight: 700;text-shadow: 1px 1px salmon;font-size:1.5rem;">Access Edit Policy</h5>
+                <div class="container-fluid" id="add_edit" style="background-color: white; padding: 15px;height: 79vh;overflow-y: scroll;">
+                    <!-- <h5 style="color:#00008b80;">Policy Details</h5>  -->
+                    <!-- Allow Condition -->
+                    <div class="container-fluid">
+                        <div class="row" style=" margin-bottom: 0px; ">
+                            <div class="col-md-9 col-sm-10 col-xs-10" style="padding-left: 0px;">
+                                <h5 style="color:#00008b80;">Policy Details</h5>                            
+                            </div>
+                            <div class="col-md-3  col-sm-2 col-xs-2">
+                                <a href="/accessList" class="panel-title float-right" style="margin-top: -5px; cursor: pointer;color: #9E9E9E; font-weight: 700; "> 
+                                    <i class="fas fa-caret-left" style="color: #9E9E9E;margin-left: -14px;font-size: 35px;"></i>
+                                    <div style="margin-top: -31px;">
+                                        <span id="back_" style="color: white;background: #9E9E9E;margin-bottom: 0px;padding: 0px 5px;">Back To Policy List</span> 
+                                    </div>
+                                </a>  
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="line" style="width: 100%;height: 1px;border-bottom: 1.5px dashed rgba(255, 0, 0, .4);margin-bottom: 10px;"></div>
+                    <div class="container-fluid">
+                        <div class="row" id="policyType">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy Type</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class='label label-info' >Access</span>
+                            </div>
+                        </div>
+                        <div class="row" id="policyId">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy ID</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class='label label-info' >{{selected_Policy.0.0 }}</span>
+                            </div>
+                        </div>
+                        <div class="row" id="policyName">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy Name</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs" style=" margin-bottom: 10px; ">
+                                <input  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" type="text" name="policyName_" value="{{selected_Policy.0.1 }}">
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 visible-xs"> 
+                                <input id="policyEnable" type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                                <!-- <input id="policyNormal" type="checkbox" data-toggle="toggle" data-on="Normal" data-off="Unusual"> -->
+                            </div>
+                        </div>
+                        <div class="row" id="policyDatabase">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy Database</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <select name="policyDatabase_" id="policyDatabase_"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true">
+                                    {% for i in databaselist %}
+                                    <option value="{{ i.db_id }}" {% if i.db_name in selected_db %}Selected{% endif %} >{{ i.db_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="row" id="policyTable">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy Table</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <select name="policyTable_"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true">
+                                    {% for i in tablelist %}
+                                    <option value="{{ i.0 }}" {% if i.2|add:i.3 in selected_table %}Selected{% endif %} >{{ i.2 }}.{{ i.3 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="row" id="policyColumn">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Policy Column</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <select name="policyColumn_"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true">
+                                    {% for i in columnlist %}
+                                    <option value="{{ i.0 }}" {% if i.1|add:i.2 in selected_column %}Selected{% endif %} >{{ i.1 }}.{{ i.2 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="row" id="policyColumn">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Role</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <select name="roleColumn_" data-weight="100px" data-container="body" class="form-control"  data-actions-box="true" data-live-search="true">
+                                    {% for i in rolelist %}
+                                    <option value="{{ i.role_type_id }}" style="text-transform: capitalize;">{{ i.role_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>  -->                   
+                        <div class="row" id="description">
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Description</span>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6 visible-xs">
+                                <textarea class="form-control rounded-0" id="description" name="filter_Column_" rows="3"></textarea>
+                            </div>
+                        </div>            
+                    </div>
+                    <!-- Allow Condition -->
+                    <div class="container-fluid">
+                        <div class="row" style=" margin-bottom: 0px; ">
+                            <div class="col-md-10 col-sm-10 col-xs-10" style="padding-left: 0px;">
+                                <h5 style="color:#00008b80;">Allow Conditions</h5>                            
+                            </div>
+                            <div class="col-md-2  col-sm-2 col-xs-2">
+                                <a class="panel-title float-right" style="cursor: pointer;color: #9E9E9E; font-weight: 700; " data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Hide 
+                                    <i class="fa" style="color: #9E9E9E;"></i> 
+                                </a>  
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="line" style="width: 100%;height: 1px;border-bottom: 1.5px dashed rgba(255, 0, 0, .4);margin-bottom: 10px;">                    
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="collapse show in" id="multiCollapseExample1" style="width: 100%;">
+                                <div class="container-fluid">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0;">
+                                        <!-- <button type="button" class="btn btn-primary" style="padding: .25rem 1rem;float: right;background-color: #001b69;border-color: #001b69;margin-bottom: 10px;">
+                                            <a style=" color: #fff; ">+</a>
+                                        </button> -->
+                                        <div class="border border-secondary" id="addAllowCondition">
+                                            <svg aria-hidden="true" style=" max-width: 25px; float: right; margin-bottom: 20px; " focusable="false" data-prefix="fad" data-icon="layer-plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-layer-plus fa-w-16 fa-3x">
+                                                <g class="fa-group">
+                                                    <path fill="currentColor" d="M400 288c16.73 0 32.68-2.91 48-7.29v18.58l-181.36 82.2a25.68 25.68 0 0 1-21.29 0L12.41 275.9c-16.55-7.5-16.55-32.5 0-40l213.87-97C239.28 223.32 312 288 400 288z" class="fa-secondary">                  
+                                                    </path>
+                                                    <path fill="currentColor" d="M499.59 364.1l-58.54-26.53-161.19 73.06a57.64 57.64 0 0 1-47.72 0L71 337.57 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59a25.68 25.68 0 0 0 21.29 0l233-105.59c16.5-7.5 16.5-32.5-.05-40zM304 144h64v64a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16v-64h64a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16h-64V16a16 16 0 0 0-16-16h-32a16 16 0 0 0-16 16v64h-64a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16z" class="fa-primary">                                            
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>                                
+                                    <div class="card card-body" style=" width: 100%;height: 160px;overflow-y: overlay;">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style=" width: 100%;">
+                                            <table class="table table-bordered  table-fixed" id="allowConditions">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">AD - Group</th>
+                                                        <th scope="col">Role</th>
+                                                        <th scope="col">Permission</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <select name="ad_group_0" id="ad_group_0"   multiple="multiple" data-weight="100px" class="selectpicker" data-container="body"  multiple data-actions-box="true" data-live-search="true">
+                                                            </select>                                             
+                                                        </td>
+                                                        <td>
+                                                            <select name="roleColumn_0" id="roleColumn_0" data-weight="100px" data-container="body" class="form-control"  data-actions-box="true" data-live-search="true">
+                                                                <option>Select</option>
+                                                                {% for i in rolelist %}
+                                                                <option value="{{ i.0 }}" style="text-transform: capitalize;">{{ i.1 }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="permission_0" id="permission_0"  data-weight="100px" class="form-control" data-container="body" data-actions-box="true" data-live-search="true">
+                                                                <option>Select</option>
+                                                                <option>Insert</option>
+                                                                <option>All</option>
+                                                                <option>Select/Deselect All</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>                                           
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>  
+                                        </div>                                                           
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col text-center" style="padding:5px 0;">
+                    <button type="button" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-primary"><a id="back_to_home" href="/accessList" style="color: white;">Cancel</a> </button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/d3_v3.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-select.js' %}"  type="text/javascript"></script>
+        <script src="{% static 'js/bootstrap-toggle.min.js' %}"  type="text/javascript"></script>
+        <!-- <script src="{% static 'js/js.cookie.js' %}"></script> -->
+        <!-- <script src="{% static 'js/csrf.js' %}"></script> -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#policyEnable').bootstrapToggle({
+                      on: 'Enabled',
+                      off: 'Disabled'
+                    });
+                $("#policyEnable").change(function(){
+                    if(this.checked == true)
+                    {
+                        s = 'on';
+                    }
+                    else
+                    {
+                        s = 'off';        
+                    }      
+                });
+                initial_check = true;
+                var data_from_django = {{ selected_Policy|safe }};
+                console.log(data_from_django)
+                $('#policyEnable').click()
+                $('#policyEnable').prop('checked')
+                var counter = 0;
+                var data_ = {{ rolelist|safe }};
+                $("#addAllowCondition").on("click", function () {
+                    counter++;
+                    var newRow = $("<tr id='row_"+counter+"' >");
+                    var cols = "";
+                    cols += "<td></td>";
+                    cols += "<td></td>";
+                    cols += "<td></td>";
+                    cols += "<td><button type='button' title='Delete' name='action' class='btn btn-danger ibtnDel' style='padding: 0px 15px;cursor: pointer;'><i class='fas fa-trash-alt' style='font-size: 12px; line-height: 2;'></i></button></td>";
+                    newRow.append(cols);
+                    $("table#allowConditions").append(newRow);   
+                    var $ad_group_ = $('<select/>', {
+                            'class':"selectpicker",
+                            'name':"ad_group_"+ counter ,
+                            'id':"ad_group_"+ counter ,
+                            'multiple':'multiple',
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });
+                    var $roleColumn_ = $('<select/>', {
+                            'class':"form-control",
+                            'name':"roleColumn_"+ counter ,
+                            'id':"roleColumn_"+ counter ,
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });
+                    var $permission_ = $('<select/>', {
+                            'class':"form-control",
+                            'name':"permission_"+ counter ,
+                            'id':"permission_"+ counter ,
+                            'data-weight':'100px',
+                            'data-container':'body',
+                            'data-actions-box':'true',
+                            'data-live-search':'true',
+                        });
+                    $roleColumn_.append('<option > Select </option>');
+                    for (var i = 0; i < data_.length; i++) {
+                        $roleColumn_.append('<option value=' + data_[i][0] + '>' + data_[i][1] + '</option>');
+                    }
+                        $ad_group_.appendTo('#row_'+counter+" > td:nth-child(1)").selectpicker('refresh');
+                        $roleColumn_.appendTo('#row_'+counter+" > td:nth-child(2)");
+                        $permission_.appendTo('#row_'+counter+" > td:nth-child(3)");
+                        var role_id = 'Select';
+                        $('#allowConditions > tbody > tr > td:nth-child(2) > select').on("change", function(d,i){
+                            if(role_id!=$('#'+d.target.id).val()){
+                                role_id =  $('#'+d.target.id).val();
+                                $.ajax({                       
+                                    url: 'http://localhost:8000/matching_permission/',                  
+                                    data: {
+                                      'role_id': role_id.replace("roleColumn_", ""),
+                                    },
+                                    success: function (data) {
+                                        $("#permission_"+d.target.id.replace("roleColumn_", "")).find('option').remove();
+                                        data.genres.map(function(h,m){
+                                            $("#permission_"+d.target.id.replace("roleColumn_", "")).append("<option value='"+h[0]+"'>"+h[1]+"</option>")
+                                        });
+                                    }
+                                  });
+                            }
+                        });
+                                        });
+                    $("table#allowConditions").on("click", ".btn.btn-danger.ibtnDel ", function (event) {
+                        $(this).closest("tr").remove();
+                        });
+                $("select[name=policyDatabase_]").on("change", function() {
+                    //$( "#myselect option:selected" ).text()
+                    //'db_id': $("select[name=policyDatabase_]").val().toString()
+                    dw=[]
+                    $("#policyDatabase_ option:selected").text(function(d,i){dw.push(i)});
+                    dw_ = "'"+dw.join("','")+"'"
+                    $.ajax({                       
+                        url: 'http://localhost:8000/matching_table/',                  
+                        data: {
+                          'db_id': dw_ 
+                        },
+                        success: function (data) {
+                            $("select[name=policyTable_]").find('option').remove();
+                            data.genres.map(function(h,m){
+                                $("select[name=policyTable_]").append("<option value='"+h[0]+"'>"+h[2]+"."+h[3]+"</option>")
+                            });
+                            $("select[name=policyTable_]").selectpicker("selectAll");
+                            $("select[name=policyTable_]").selectpicker('refresh');
+                        }
+                      });
+                });
+                $("select[name=policyTable_]").on("change", function() {
+                    $.ajax({                       
+                        url: 'http://localhost:8000/matching_column/',                  
+                        data: {
+                          'db_id': $("select[name=policyDatabase_]").val().toString(),
+                          'table_id': $("select[name=policyTable_]").val().toString()  
+                        },
+                        success: function (data) {
+                            $("select[name=policyColumn_]").find('option').remove();
+                            data.genres.map(function(h,m){
+                                $("select[name=policyColumn_]").append("<option value='"+h[0]+"'>"+h[1]+"."+h[2]+"</option>")
+                            });
+                            $("select[name=policyColumn_]").selectpicker("selectAll");
+                            $("select[name=policyColumn_]").selectpicker('refresh');
+                        }
+                      });
+                });
+                var role_id = 'Select';
+                $('#allowConditions > tbody > tr > td:nth-child(2) > select').on("change", function(d,i){
+                    if(role_id!=$('#'+d.target.id).val()){
+                        role_id =  $('#'+d.target.id).val();
+                        $.ajax({                       
+                            url: 'http://localhost:8000/matching_permission/',                  
+                            data: {
+                              'role_id': role_id.replace("roleColumn_", ""),
+                            },
+                            success: function (data) {
+                                $("#permission_"+d.target.id.replace("roleColumn_", "")).find('option').remove();
+                                data.genres.map(function(h,m){
+                                    $("#permission_"+d.target.id.replace("roleColumn_", "")).append("<option value='"+h[0]+"'>"+h[1]+"</option>")
+                                });
+                            }
+                          });
+                    }
+                });
+            });
+        </script> 
+    </body>    
+</html> 
+
+
+-----------------------------------------------------------------------------------------------------------
+
+init.py
+
+import pymysql
+pymysql.version_info = (1, 3, 13, "final", 0)
+pymysql.install_as_MySQLdb()
+# import efsversion
+# efsversion.require({'mysqlclient': '1.3.13'})
+# import MySQLdb
+
+-----------------------------------------------------------------------------------------------------------
+
+authentication_backend.py
+
+
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth.models import User
+from landingpage.utils import get_LDAP_user
+
+
+class AuthenticationBackend(ModelBackend):
+
+    def authenticate(self, request, username=None, password=None, **kwargs):
+
+        # Get the user information from the LDAP if he can be authenticated
+        get_user_= get_LDAP_user(username, password)
+        if get_user_ is None:
+            return None
+
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            user = User(username=username,first_name=get_user_.split(',')[1],last_name=get_user_.split(',')[0])
+            user.is_staff = True
+            user.save()
+        return user
+
+    def get_user(self, user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None
+
+
+----------------------------------------------------------------------------------------------------------
+
+utils.py
+
+import pandas as pd
+from django.db import connections
+from ast import literal_eval
+# import efsversion#
+# efsversion.require({'pyodbc': '4.0.26_qz5'})#
+# efsversion.require({'pyasn1': '0.3.6'})#
+# efsversion.require({'pyasn1_modules': '0.2.8'})#
+# efsversion.require({'python_ldap': '3.1.0_qz1'})#
+# import pyasn1
+# import pyasn1
+# import ldap
+import pyodbc
+import re
+
+def get_LDAP_user(username, password):
+    try:
+        Server = "ldap://adaccess.***.com:3268"
+        Base = "dc=corp,dc=bankofamerica,dc=com"
+        Scope = ldap.SCOPE_SUBTREE
+        Filter = "(&(objectClass=user)(sAMAccountName="+username+"))"
+        Attrs = ["displayName"]
+        l = ldap.initialize(Server)
+        l.protocol_version = 3
+        l.simple_bind_s(username+'@corp.***.com', password)
+        r = l.search(Base, Scope, Filter, Attrs)
+        Type,user = l.result(r,60)
+        Name,Attrs = user[0]
+        if 'displayName' in Attrs:
+          displayName = Attrs['displayName']
+          return displayName[0].decode('utf-8')
+        return None
+    except Exception as e:
+        print("Error:",e)
+        return None
+
+def check_credentials(username, password, username1):
+    try:
+        banner = []
+        host = 'ada-hive-dev.***.com'
+        port = '10000'
+        # cnxn = pyodbc.connect('DRIVER={/opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cnxn = pyodbc.connect('DRIVER={Cloudera ODBC Driver for Apache Hive};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cn = cnxn.cursor()
+    except Exception as e:
+        audit_track(0,username,e,"Failure")
+        banner.append(e)
+        return banner, False
+    audit_track(0,username,"Valid Credentials",-1)
+    banner.append("Valid Credentials")
+    return banner, True
+
+def delete_(policy_id):
+    sql = "UPDATE POLICY_DETAIL INNER  JOIN POLICY ON  POLICY.policy_id=POLICY_DETAIL.policy_id  INNER JOIN POLICY_HIVE_DETAIL ON POLICY_DETAIL.policy_detail_id=POLICY_HIVE_DETAIL.policy_detail_id SET POLICY.is_enabled=0, POLICY_DETAIL.is_enabled=0, POLICY_HIVE_DETAIL.is_enabled=0 where POLICY.policy_id = "+policy_id
+    cur = connections['insight_'].cursor()
+    print("delete_")
+    cur.execute(sql)
+    connections['insight_'].commit()
+    rtrn = cur.lastrowid
+    cur.close()
+    connections['insight_'].close()
+    return str(rtrn)
+
+def matching_table(db_id):
+    sql = 'SELECT TABLE_DETAIL.table_id, DB_DETAIL.db_id, DB_DETAIL.db_name, TABLE_DETAIL.table_name FROM DB_DETAIL INNER JOIN TABLE_DETAIL ON DB_DETAIL.db_id = TABLE_DETAIL.db_id where DB_DETAIL.db_name in ('+str(db_id)+");"
+    print("matching_table")
+    cur = connections['insight_'].cursor()
+    cur.execute(sql)
+    row_headers = [x[0] for x in cur.description]  # this will extract row headers
+    rv = cur.fetchall()
+    return dict(genres=[list(i) for i in rv])
+
+def full_Policies_details():
+    cur = connections['insight_'].cursor()
+    cur.execute("select p.policy_id,Policy_name,role_name as RoleName,p.policy_status as PolicyStatus,ad_group_name,privilege_type,COALESCE(db_name,'ALL') as db_name , COALESCE(table_name,'ALL')  as  table_name , COALESCE(column_name,'ALL')  as column_name, p.comment from POLICY p inner join POLICY_DETAIL pd on p.policy_id=pd.policy_id inner join POLICY_HIVE_DETAIL phd on pd.policy_detail_id=phd.policy_detail_id LEFT join AD_GROUP ag on pd.ad_group_id=ag.ad_group_id LEFT join PRIVILEGE_TYPE pt on pt.privilege_type_id = pd.privilege_type_id LEFT join DB_DETAIL dd on phd.DB_ID=dd.db_id LEFT join TABLE_DETAIL td on phd.Table_ID  =td.table_id LEFT join COLUMN_DETAIL cd on phd.column_ID=cd.column_id LEFT join Role r on pd.role_type_id= r.role_type_id where p.is_enabled=1;")
+    row_headers=[x[0] for x in cur.description] #this will extract row headers
+    rv = cur.fetchall()
+    return [list(i) for i in rv]
+
+def selected_Policies_details(policy_id):
+    cur = connections['insight_'].cursor()
+    cur.execute("select p.policy_id,Policy_name,role_name as Role,p.policy_status as PolicyStatus,ad_group_name,privilege_type,COALESCE(db_name,'ALL') as db_name , COALESCE(table_name,'ALL')  as  table_name , COALESCE(column_name,'ALL')  as column_name,p.comment from POLICY p inner join POLICY_DETAIL pd on p.policy_id=pd.policy_id inner join POLICY_HIVE_DETAIL phd on pd.policy_detail_id=phd.policy_detail_id LEFT join AD_GROUP ag on pd.ad_group_id=ag.ad_group_id LEFT join PRIVILEGE_TYPE pt on pt.privilege_type_id = pd.privilege_type_id LEFT join DB_DETAIL dd on phd.DB_ID=dd.db_id LEFT join TABLE_DETAIL td on phd.Table_ID  =td.table_id LEFT join COLUMN_DETAIL cd on phd.column_ID=cd.column_id LEFT join Role r on pd.role_type_id= r.role_type_id where p.policy_id = '"+policy_id+"'")
+    row_headers=[x[0] for x in cur.description] #this will extract row headers
+    rv = cur.fetchall()
+    return [list(i) for i in rv]
+
+def matching_column(db_ids, table_id):
+    sql = 'SELECT COLUMN_DETAIL.column_id, TABLE_DETAIL.table_name, COLUMN_DETAIL.column_name,TABLE_DETAIL.table_id , TABLE_DETAIL.db_id FROM TABLE_DETAIL INNER JOIN COLUMN_DETAIL ON TABLE_DETAIL.table_id = COLUMN_DETAIL.table_id where COLUMN_DETAIL.db_id in ('+str(db_ids)+") and COLUMN_DETAIL.table_id in ("+str(table_id)+");";
+    print("matching_column")
+    cur = connections['insight_'].cursor()
+    cur.execute(sql)
+    row_headers = [x[0] for x in cur.description]  # this will extract row headers
+    rv = cur.fetchall()
+    return dict(genres=[list(i) for i in rv])
+
+def matching_permission(role_type_id):
+    sql = "select pt.privilege_type_id,privilege_type,role_name, environment_name from Role_Map_privilege a left join Role b on a.role_type_id =b.role_type_id left join PRIVILEGE_TYPE pt on a.privilege_type_id=pt.privilege_type_id left join environment_type et on a.environment_type_id=et.environment_type_id  where environment_name ='DEV' and b.role_type_id="+role_type_id+";";
+    print("matching_permission")
+    cur = connections['insight_'].cursor()
+    cur.execute(sql)
+    row_headers = [x[0] for x in cur.description]  # this will extract row headers
+    rv = cur.fetchall()
+    return dict(genres=[list(i) for i in rv])
+
+def insert_Policy(policyName_, description, policyEnable):
+    sql = "insert into POLICY (policy_name,service_id,policy_type_id,comment,policy_status,is_enabled) values ('"+policyName_+"',1,1,'"+description+"','Approved',"+str(policyEnable)+");"
+    print("insert_Policy")
+    cur = connections['insight_'].cursor()
+    cur.execute(sql)
+    connections['insight_'].commit()
+    rtrn = cur.lastrowid
+    return rtrn
+
+def insert_ad_group(ad_group_name):
+    print("insert_ad_group",ad_group_name)
+    sql = "select ad_group_id from insight.AD_GROUP where ad_group_name='"+str(ad_group_name)+"';"
+    cur = connections['insight_'].cursor()
+    id_=[]
+    cur.execute(sql)
+    numrows = cur.rowcount
+    for x in range(0,numrows):
+        row = cur.fetchone()
+        id_.append(row[0])
+    if(len(id_)<=0):
+        sql = "insert into AD_GROUP (ad_group_name,ad_group_owner,ad_group_Mail,ad_group_AIT) values('"+ad_group_name+"', 'Mythily', 'mythily@bofa.com', '654442');"
+        print(sql)
+        cur = connections['insight_'].cursor()
+        cur.execute(sql)
+        connections['insight_'].commit()
+        rtrn = cur.lastrowid
+        print("new-ad")
+        return str(rtrn)
+    rtrn = id_[0]
+    print("existing-ad")
+    return str(rtrn)
+
+def insert_POLICY_DETAIL(policy_id,ad_group_id,privilege_type_id,role_type_id):
+    cur = connections['insight_'].cursor()
+    sql = "insert into POLICY_DETAIL (policy_id,ad_group_id,user_id,privilege_type_id,role_type_id) values ("+str(policy_id)+","+str(ad_group_id)+",1,"+str(privilege_type_id)+","+str(role_type_id)+");"
+    print("insert_POLICY_DETAIL",policy_id,ad_group_id,privilege_type_id,role_type_id)
+    cur.execute(sql)
+    connections['insight_'].commit()
+    rtrn = cur.lastrowid
+    return str(rtrn)
+
+def insert_POLICY_HIVE_DETAIL(policy_detail_id,DB_ID,Table_ID,column_ID):
+    cur = connections['insight_'].cursor()
+    sql = "insert into POLICY_HIVE_DETAIL (policy_detail_id,DB_ID,Table_ID,column_ID) values ("+str(policy_detail_id)+","+str(DB_ID)+","+str(Table_ID)+","+str(column_ID)+" );"
+    print("insert_POLICY_HIVE_DETAIL")
+    cur.execute(sql)
+    connections['insight_'].commit()
+    rtrn = cur.lastrowid
+    cur.close()
+    connections['insight_'].close()
+    return str(rtrn)
+def checkRoleExist(role, username, password,username1):
+    try:
+        banner = []
+        host = 'ada-hive-dev.***.com'
+        port = '10000'
+        username = username
+        password = password
+        # cnxn = pyodbc.connect('DRIVER={/opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cnxn = pyodbc.connect('DRIVER={Cloudera ODBC Driver for Apache Hive};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cn = cnxn.cursor()
+        Role_RoleTOGroup =("show GRANT ROLE "+role+";\n")#"CREATE ROLE dummy_cdh_eaui_dev_pbcuratr_role;\n"
+        print("checkRoleExist")
+        print(Role_RoleTOGroup)
+        cn.execute(Role_RoleTOGroup)
+        results = cn.rowcount
+        audit_track(0,username,"Policy rejected since Role Exists",results)
+        banner.append("Policy rejected since Role Exists")
+        return banner, False
+    except Exception as e:
+        print("Error Message --", e)
+        audit_track(0,username,"New Role Detected",-1)
+        banner.append("New Role Detected")
+        return banner, True
+
+def access_provision(policy_id, username, password,username1,policyUri_):
+    host = 'ada-hive-dev.***.com'
+    port = '10000'
+    username = username
+    password = password
+    banner = []
+    try:
+        connection = connections['insight_']
+        print("access_provision")
+        sql_select_Query =("select Policy_name,role_name as personaname,ad_group_name,CONCAT(ad_group_name,'_role') as rolename,privilege_type,COALESCE(db_name,'ALL') as db_name , COALESCE(table_name,'ALL')  as  table_name , COALESCE(column_name,'ALL')  as column_name \n"
+    "from POLICY p inner join POLICY_DETAIL pd on p.policy_id=pd.policy_id  \n"
+    "inner join POLICY_HIVE_DETAIL phd on pd.policy_detail_id=phd.policy_detail_id  \n"
+    "LEFT join AD_GROUP ag on pd.ad_group_id=ag.ad_group_id  \n "
+    "LEFT join PRIVILEGE_TYPE pt on pt.privilege_type_id = pd.privilege_type_id  \n"
+    "LEFT join DB_DETAIL dd on phd.DB_ID=dd.db_id  \n"
+    "LEFT join TABLE_DETAIL td on phd.Table_ID  =td.table_id  \n"
+    "LEFT join COLUMN_DETAIL cd on phd.column_ID=cd.column_id  \n"
+    "LEFT join Role r on pd.role_type_id= r.role_type_id where p.policy_id ="+str(policy_id))+" and p.is_enabled=1;"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        print("records:------------------",records)
+        # cnxn = pyodbc.connect('DRIVER={/opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cnxn = pyodbc.connect('DRIVER={Cloudera ODBC Driver for Apache Hive};HOST='+host+';PORT=' +port+';AuthMech=3;SSL=0;UID='+username+';PWD='+ password, autocommit=True)
+        cn = cnxn.cursor()
+        print("Total number of Policy: ", cursor.rowcount)
+        print("\nPrinting each Policy")
+        for row in records:
+            DB_Permission=""
+            Table_permission=""
+            Column_permission=""
+            DB_privilege=""
+            Table_privilege=""
+            Column_privilege=""
+            PolicyQuery=''
+            print("PolicyName= ", row[0],)
+            print("personaname = ", row[1])
+            print("ad_group_name  = ", row[2])
+            print("rolename  = ", row[3])
+            print("privilege_type  = ", row[4])
+            print("db_name  = ", row[5])
+            print("table_name  = ", row[6])
+            print("column_name  = ", row[7], "\n")
+            print("Create Role :--------------------------")
+            create_role =("CREATE ROLE "+row[3]+ ";\n")
+            banner_, checkRoleExist_ = checkRoleExist(row[3], username, password,username1)
+            if(checkRoleExist_):
+                print(create_role)
+                cn.execute(create_role)
+                print(create_role,"ODBC QUERY")
+                results = cn.rowcount
+                print(audit_track(policy_id,username,create_role,results))
+                banner.append("Role Created")
+                role_results = cn.rowcount 
+            print("Role to ADGroup Mapping:----------------------")    
+            Role_RoleTOGroup =("GRANT ROLE "+ row[3] + " TO GROUP "+ row[2] + ";\n")#" CREATE ROLE "+row[3]+ ";\n"
+            print(Role_RoleTOGroup)
+            cn.execute(Role_RoleTOGroup)
+            print(Role_RoleTOGroup,"ODBC QUERY")
+            results = cn.rowcount
+            print(audit_track(policy_id,username,Role_RoleTOGroup,results))
+            banner.append("Grant Role to "+ row[5] + " -> "+ row[6]+ " -> "+ row[7] )
+            print("Grant DB :----------------------")  
+            if (row[5] == "ALL"):
+                DB_privilege= "DATABASE ALL"
+                DB_Permission =(" GRANT "+ row[4]+" ON " +DB_privilege+ " TO ROLE "+ row[3] +";\n" )
+                cn.execute(DB_Permission)
+                print(DB_Permission,"ODBC QUERY")
+                results = cn.rowcount
+                print(audit_track(policy_id,username,DB_Permission,results))
+                results = cn.fetchall()
+            elif((row[5] != "ALL") & (row[6] == "ALL")):
+                DB_privilege="DATABASE "+row[5]
+                print(DB_privilege)
+            else :
+                DB_privilege=""
+            print("DB_privilege-----------------",DB_privilege)
+            if(len(DB_privilege)>0) :
+                DB_Permission =(" GRANT "+ row[4]+" ON " +DB_privilege+ " TO ROLE "+ row[3] +";\n" )
+                cn.execute(DB_Permission)
+                print(DB_Permission,"ODBC QUERY")
+                results = cn.rowcount
+                print(audit_track(policy_id,username,DB_Permission,results))    
+            print("Grant Table :----------------------")  
+            if (row[6] == "ALL"):
+                Table_privilege= " TABLE ALL"
+            else:
+                Table_privilege=" TABLE "+ row[5] +"." + row[6]
+            if  ((str(row[5]) != str("ALL")) & (str(row[6]) != str("ALL")) & (str(row[7]) == str("ALL")) ) :
+                Table_permission =("GRANT "+ row[4]+" ON " +Table_privilege+ " TO ROLE "+ row[3] +";\n" )
+                cn.execute(Table_permission)
+                print(Table_permission,"ODBC QUERY")
+                results = cn.rowcount
+                print(Table_permission)
+                print(audit_track(policy_id,username,Table_permission,results))
+            print("Grant Column :----------------------")  
+            if  (str(row[7]) != str("ALL")):
+                Column_privilege=" ( "+ row[7] + ")"+ " ON TABLE "+  row[5] +"." + row[6]
+            if (len(Column_privilege)>1) :
+                Column_permission =("GRANT  select " +Column_privilege+ " TO ROLE "+ row[3] +";\n");
+                cn.execute(Column_permission)
+                print(Column_permission,"ODBC QUERY")
+                results = cn.rowcount
+                print(Column_permission)
+                print(audit_track(policy_id,username,Column_permission,results))
+                print(audit_track(policy_id,username,"Column_permission",results))
+    except Exception as e:
+        print("Error reading data from MySQL table ==>", e)   
+        print(audit_track(policy_id,username,e,"Failure"))
+        banner.append("Access Permission Error")
+    finally:        
+        connection.close()
+        cursor.close()
+        print("MySQL connection is closed")
+    return banner,True
+
+
+def audit_track(policy_id, username, query, results):
+    cur = connections['insight_'].cursor()
+    print("audit_track")
+    # print(policy_id)
+    # print(username)
+    # print(results)
+    # print(query,"--->")
+    if(len(str(query))>1):
+        PolicyQuery1=str(query)
+    if results==-1:
+        exestatus="Success"
+    else:
+        exestatus="Failed"
+    PolicyQuery1 =re.sub('[^a-zA-Z0-9\n\.]', ' ', PolicyQuery1)   
+    sql = "insert into Audit_log (PolicyId,PolicyCreatedBy,PolicyQuery,ExecutionStatus) values ("+str(policy_id)+",'"+str(username)+"','"+str(PolicyQuery1)+"','"+str(exestatus)+"' );"
+    #print(sql)
+    cur.execute(sql)    
+    connections['insight_'].commit()
+    cur.close()
+    connections['insight_'].close()
+    return 0
+            
+def checkDatabaseTables(database_id,tables_id):
+    sql = "SELECT table_id FROM insight.TABLE_DETAIL where db_id = "+database_id+";"
+    print("checkDatabaseTables")
+    cur = connections['insight_'].cursor()
+    cur.execute(sql)
+    row_headers = [x[0] for x in cur.description]  # this will extract row headers
+    rv = cur.fetchall()
+    resultt = all(item in tables_id for item in [str(list(i)[0]) for i in rv])
+    print(row_headers, rv, resultt)
+    return resultt
+
+def revoke_provision(policy_id, username, password,username1):
+    host = 'ada-hive-dev.***.com'
+    port = '10000'
+    username = username
+    password = password
+    try:
+        connection = connections['insight_']
+        print("revoke_provision")
+        sql_select_Query = ("select Policy_name,role_name as personaname,ad_group_name,CONCAT(ad_group_name,'_role') as rolename,privilege_type,COALESCE(db_name,'ALL') as db_name , COALESCE(table_name,'ALL')  as  table_name , COALESCE(column_name,'ALL')  as column_name \n"
+                                   "from POLICY p inner join POLICY_DETAIL pd on p.policy_id=pd.policy_id  \n"
+                                   "inner join POLICY_HIVE_DETAIL phd on pd.policy_detail_id=phd.policy_detail_id  \n"
+                                   "LEFT join AD_GROUP ag on pd.ad_group_id=ag.ad_group_id  \n "
+                                   "LEFT join PRIVILEGE_TYPE pt on pt.privilege_type_id = pd.privilege_type_id  \n"
+                                   "LEFT join DB_DETAIL dd on phd.DB_ID=dd.db_id  \n"
+                                   "LEFT join TABLE_DETAIL td on phd.Table_ID  =td.table_id  \n"
+                                   "LEFT join COLUMN_DETAIL cd on phd.column_ID=cd.column_id  \n"
+                                   "LEFT join Role r on pd.role_type_id= r.role_type_id where p.policy_id =" + str(policy_id)) + ";"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        # cnxn = pyodbc.connect('DRIVER={/opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so};HOST=' + host + ';PORT=' + port + ';AuthMech=3;SSL=0;UID=' + username + ';PWD=' + password,autocommit=True)
+        cnxn = pyodbc.connect('DRIVER={Cloudera ODBC Driver for Apache Hive};HOST=' + host + ';PORT=' + port + ';AuthMech=3;SSL=0;UID=' + username + ';PWD=' + password,autocommit=True)
+        cn = cnxn.cursor()
+        print("Total number of Policy: ", cursor.rowcount)
+        print("\nPrinting each Policy")
+        iteratin = 0
+        for row in records:
+            DB_revoke_Permission = ""
+            Table_revoke_permission = ""
+            Column_revoke_permission = ""
+            DB_revoke_privilege = ""
+            Table_revoke_privilege = ""
+            Column_revoke_privilege = ""
+            Query =''
+            print("PolicyName= ", row[0])
+            print("personaname = ", row[1])
+            print("ad_group_name  = ", row[2])
+            print("rolename  = ", row[3])
+            print("privilege_type  = ", row[4])
+            print("db_name  = ", row[5])
+            print("table_name  = ", row[6])
+            print("column_name  = ", row[7], "\n")
+            print("Revoke Role From ADGroup----------------------",row[3],row[2])
+            revoke_role_map_adgroup = ("REVOKE ROLE " + row[3] + " FROM GROUP " + row[2] + ";\n")
+            cn.execute(revoke_role_map_adgroup)
+            results = cn.rowcount
+            print(audit_track(policy_id,username,revoke_role_map_adgroup,results))    
+            print(revoke_role_map_adgroup)
+            print("Revoke DB Access -------------------------")
+            if (row[5] == "ALL"):
+                DB_revoke_privilege = "DATABASE ALL"
+                print(DB_revoke_privilege)
+            elif((row[5] != "ALL") & (row[6] == "ALL")):
+                    DB_revoke_privilege="DATABASE "+row[5]
+                    print(DB_revoke_privilege)
+            else :
+                    DB_revoke_privilege=""
+            print("DB_revoke_privilege:----------------",DB_revoke_privilege)
+            if(len(DB_revoke_privilege)>0): 
+                DB_revoke_Permission =(" REVOKE "+ row[4]+" ON " +DB_revoke_privilege+ " FROM  ROLE "+ row[3] +";\n" )
+                cn.execute(DB_revoke_Permission)            
+                results = cn.rowcount
+                print(DB_revoke_Permission)
+                print(audit_track(policy_id,username,DB_revoke_Permission,results))
+            print("Revoke Table Access -------------------------")
+            if (row[6] == "ALL"):
+                Table_revoke_privilege = " TABLE ALL"
+            else:
+                Table_revoke_privilege = " TABLE " + row[5] + "." + row[6]
+            if ((str(row[5]) != str("ALL")) & (str(row[6]) != str("ALL")) & (str(row[7]) == str("ALL"))):
+                print('table')
+                Table_revoke_permission = ("REVOKE " + row[4] + " ON " + Table_revoke_privilege + " FROM ROLE " + row[3] + ";\n")
+                cn.execute(Table_revoke_permission)
+                results = cn.rowcount
+                print(Table_revoke_permission)
+                print(audit_track(policy_id,username,Table_revoke_permission,results))
+            print("Revoke Column Access -------------------------")
+            if (str(row[7]) != str("ALL")):
+                Column_revoke_privilege = " ( " + row[7] + ")" + " ON TABLE " + row[5] + "." + row[6]
+            if (len(Column_revoke_privilege) > 1):
+                Column_revoke_permission = ("REVOKE select "  + Column_revoke_privilege + " FROM ROLE " + row[3] + ";\n");
+                cn.execute(Column_revoke_permission)
+                results = cn.rowcount
+                print(audit_track(policy_id,username,Column_revoke_permission,results))
+                print(Column_revoke_permission)
+            iteratin +=1
+            if(iteratin==len(records)):
+                print("Delete role -------------------------")
+                role_drop =(" DROP  ROLE "+ row[3] +";\n" )
+                cn.execute(role_drop)            
+                results = cn.rowcount
+                print(audit_track(policy_id,username,role_drop,results))
+    except Exception as e:
+        print("Error reading data from MySQL table", e)
+        print(audit_track(policy_id,username,e,"Failure"))  
+    finally:
+        connection.close()
+        cursor.close()
+        print("MySQL connection is closed")
+    return "success!!!"
+
+
+ ----------------------------------------------------------------------------------------------------------
+
+
+ views.py
+
+
+
+ from __future__ import unicode_literals
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+# import efsversion#
+# efsversion.require({'numpy': '1.17.3'})#
+# efsversion.require({'pandas': '0.24.2'})#
+import numpy
+import pandas as pd 
+import json
+from ranger.utils import checkRoleExist, check_credentials, delete_, matching_table, full_Policies_details, selected_Policies_details, matching_column, matching_permission, insert_Policy, insert_ad_group, insert_POLICY_DETAIL, insert_POLICY_HIVE_DETAIL, access_provision, revoke_provision,checkDatabaseTables
+from django.contrib.auth import logout
+# def home(request):
+#     if request.user.is_authenticated:
+#         return redirect('entitlement')
+#     return redirect('login')
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from ranger.models import DB_DETAIL, TABLE_DETAIL, Role, AD_GROUP
+# from django.core import serializer  
+from django.http import JsonResponse
+from django.db.models import Q
+
+@login_required
+def accessList(request):
+    # #print(df_json)
+    if request.method == 'POST':
+        view = request.POST.get("delete_")
+        username = request.POST.get("username_") 
+        password = request.POST.get("password_") 
+        banner_, check_credentials_ = check_credentials(username,password,request.user.username)
+        if(check_credentials_):
+            if(str(view)=="None"):
+                df_json = full_Policies_details()
+                return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json})
+            elif(view.split("_")[1]=="delete"):
+                delete_status = delete_(view.split("_")[0])
+                revoke_provision(view.split("_")[0],username,password,request.user.username)
+                df_json = full_Policies_details()
+                # return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json})
+                banner = ["Policy Revoked Successfully"]
+                return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json,'banner':banner})
+        else:
+            return HttpResponseRedirect("/failure")
+
+    df_json = full_Policies_details()
+    # #print(df_json)
+    return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json})
+@login_required
+def policyAccessEdit(request):
+    df_json = full_Policies_details()
+    if request.method == 'POST':
+        view = request.POST.get("edit")
+        print(view,"------->")
+        try:
+            arts = DB_DETAIL.objects.all()
+        except DB_DETAIL.DoesNotExist:
+            arts = None
+        try:
+            rolelist = Role.objects.filter(~Q(is_enabled = 0))
+        except Role.DoesNotExist:
+            rolelist = None
+        rolelist_ = []
+        for i in rolelist:
+            rolelist_.append([i.role_type_id, i.role_name])
+        selected_Policy = selected_Policies_details(view.split("_")[0])
+        print(selected_Policy)
+        selected_db = [i[6] for i in selected_Policy]
+        # #print(matching_table("'"+"','".join(selected_db))+"'")
+        selected_table = [i[6]+i[7] for i in selected_Policy]
+        selected_column= [i[7]+i[8] for i in selected_Policy]
+        tablelist = matching_table("'" + "','".join(selected_db) + "'")
+        columnlist = matching_column("'" + "','".join([str(i[1]) for i in tablelist['genres']]) + "'", "'" + "','".join([str(i[0]) for i in tablelist['genres']]) + "'")
+        nkm = []
+        for i in columnlist['genres']:
+            if(i[1] in [j[7] for j in selected_Policy]):
+                nkm.append(i)
+        return render(request, 'policyAccessEdit.html',{'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,
+            'selected_Policy':selected_Policy,
+            'databaselist':arts, 
+            'selected_db' : selected_db, 
+            'tablelist': tablelist['genres'],
+            'selected_table' : selected_table,
+            'columnlist': nkm,
+            'selected_column' : selected_column,
+            'description':selected_Policy[0][9],         
+            'rolelist': rolelist_} )
+    return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json})
+
+def matching_table_ajax(request):
+    db_ids = request.GET.get('db_id')
+    return JsonResponse(matching_table(db_ids))
+    # cities = TABLE_DETAIL.objects.values('table_name').filter(db_id__in=[1,2]).order_by('table_name')
+    # return JsonResponse(dict(genres=list(cities)))
+
+def matching_column_ajax (request):
+    db_ids = request.GET.get('db_id')
+    table_id = request.GET.get('table_id')
+    return JsonResponse(matching_column(db_ids,table_id))
+
+def matching_permission_ajax (request):
+    role_id = request.GET.get('role_id')
+    return JsonResponse(matching_permission(role_id))
+
+def failure(request):
+    return render(request, 'failure.html')   
+# @login_required
+# @staff_member_required
+# @user_passes_test(lambda u: u.is_superuser)
+@login_required
+def policyAccessAdd(request):
+    if request.method == 'POST':
+        df_json = full_Policies_details()
+        access_type = request.POST.get("access_type")
+        policyName_ = request.POST.get("policyName_")
+        print(policyName_)
+        policyEnable = request.POST.get("policyEnable",1)
+        if(policyEnable == 'on'):
+            policyEnable = 1
+        policyDatabase_ = request.POST.getlist("policyDatabase_",None)  
+        policyTable_ = request.POST.getlist("policyTable_",'')
+        policyTable = [i.split('.')[0] for i in policyTable_]
+        policyColumn_ = request.POST.getlist("policyColumn_",'')
+        policyColumn = [[i.split(',')[0],i.split(',')[1]] for i in policyColumn_]
+        policyUri_ = request.POST.get("policyUri_",'') 
+        description = request.POST.get("description",'-')    
+        noofrecords = request.POST.get("noofrecords") 
+        username = request.POST.get("username") 
+        password = request.POST.get("password")
+        banner = []
+        banner_, check_credentials_ = check_credentials(username,password,request.user.username)
+        banner = banner+banner_
+        if(check_credentials_):
+            checkRoleExist_ = True
+            banner_ = []
+            for i in noofrecords.split(","):
+                banner_, checkRoleExist_ = checkRoleExist(request.POST.get("ad_group_"+str(i))+"_role", username, password,request.user.username)
+                if(not checkRoleExist_):
+                    checkRoleExist_ = False
+            banner = banner+banner_
+            if(checkRoleExist_):
+                policy_id = insert_Policy(policyName_, description, policyEnable)
+                print(policyColumn_,"columnssssssssssss", policyDatabase_,noofrecords)
+                for i in noofrecords.split(","):
+                    get_ad = request.POST.get("ad_group_"+str(i))
+                    print(get_ad)
+                    ad_group_id = insert_ad_group(get_ad)
+                    print(i,"policyAccessAdd",ad_group_id)
+                    #print("Ad",i,"finished -->",ad_group_id)
+                    policy_detail_id = insert_POLICY_DETAIL(policy_id, ad_group_id,request.POST.get("permission_"+str(i)),request.POST.get("roleColumn_"+str(i)))
+                    #print(len(policyColumn_)<=0 and len(policyTable_)>0,len(policyColumn_),len(policyTable_),"--->",policyColumn_)
+                    if len(policyColumn_)<=0 and len(policyTable_)<=0:
+                        if('4' in policyDatabase_):
+                            print('SENTRY LEVEL')
+                            insert_POLICY_HIVE_DETAIL(policy_detail_id, 4, 'null', 'null')
+                        else:
+                            for j in policyDatabase_:
+                                print('DATABASE LEVEL')
+                                insert_POLICY_HIVE_DETAIL(policy_detail_id, j, 'null', 'null')
+                    elif len(policyColumn_)<=0 and len(policyTable_)>0:
+                        for j in policyDatabase_:
+                            if(j not in policyTable):
+                                print('DATABASE LEVEL')
+                                insert_POLICY_HIVE_DETAIL(policy_detail_id, j, 'null', 'null')
+                            else:
+                                for k in policyTable_:
+                                    print('TABLE LEVEL')
+                                    if(j==k.split('.')[0]):
+                                        insert_POLICY_HIVE_DETAIL(policy_detail_id, k.split('.')[0], k.split('.')[1], 'null')
+                    elif len(policyColumn_) > 0:
+                        for j in policyDatabase_:
+                            if(j not in policyTable):
+                                print('DATABASE LEVEL')
+                                insert_POLICY_HIVE_DETAIL(policy_detail_id, j, 'null', 'null')
+                            else:
+                                for k in policyTable_:
+                                    if(j==k.split('.')[0]):
+                                        if([j,k.split('.')[1]] in policyColumn):
+                                            for l in policyColumn_:
+                                                if(j==l.split(",")[0] and k.split('.')[1]==l.split(",")[1]):
+                                                    print('COLUMN LEVEL', j,k,l)
+                                                    insert_POLICY_HIVE_DETAIL(policy_detail_id,l.split(",")[0],l.split(",")[1],l.split(",")[2])                                               
+                                        else:
+                                            print("TABLE LEVEL - only",j,k)
+                                            insert_POLICY_HIVE_DETAIL(policy_detail_id, k.split('.')[0], k.split('.')[1], 'null')                   
+                banner_, access_provision_ = access_provision(policy_id,username,password,request.user.username,policyUri_)
+                banner = banner+banner_
+                banner = banner+["Policy Created"]
+            df_json = full_Policies_details()
+            return render(request, 'accessList.html', {'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,'data':df_json,'banner':banner})
+            # return HttpResponseRedirect("/accessList")
+        else:
+            return HttpResponseRedirect("/failure")
+    try:
+        arts = DB_DETAIL.objects.all()
+    except DB_DETAIL.DoesNotExist:
+        arts = None
+    try:
+        rolelist = Role.objects.filter(~Q(is_enabled = 0))
+    except Role.DoesNotExist:
+        rolelist = None
+    try:
+        ad_group_list = AD_GROUP.objects.filter(~Q(is_enabled = 0))
+    except AD_GROUP.DoesNotExist:
+        ad_group_list = None
+    rolelist_ = []
+    for i in rolelist:
+        rolelist_.append([i.role_type_id, i.role_name])
+    adlist_ = []
+    for i in ad_group_list:
+        #print(i.ad_group_id, i.ad_group_name)
+        adlist_.append([i.ad_group_id, i.ad_group_name])
+    return render(request, 'policyAccessAdd.html',{'user':request.user.username,'fullname':request.user.last_name+","+request.user.first_name,
+        'databaselist':arts, 
+        'ad_group_list' : adlist_ ,
+        'rolelist': rolelist_} )
+# @login_required
+def policyRLAAdd(request):
+    default_edit = 'Create'
+    return render(request, 'policyRLAAdd.html', {'action':default_edit})
+@login_required
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('logout')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+router.py
+
+class DbRouter(object):
+    """
+    A router to control all database operations on models in the
+    user application.
+    """
+    def db_for_read(self, model, **hints):
+        """
+        Attempts to read user models go to insight_.
+        """
+        if model._meta.app_label == 'insight':
+            return 'insight_'
+        return None
+
+    def db_for_write(self, model, **hints):
+        """
+        Attempts to write user models go to insight_.
+        """
+        if model._meta.app_label == 'insight':
+            return 'insight_'
+        return None
+
+    def allow_relation(self, obj1, obj2, **hints):
+        """
+        Allow relations if a model in the user app is involved.
+        """
+        if obj1._meta.app_label == 'insight' or \
+           obj2._meta.app_label == 'insight':
+           return True
+        return None
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        """
+        Make sure the auth app only appears in the 'insight_'
+        database.
+        """
+        if app_label == 'insight':
+            return db == 'insight_'
+        return None
